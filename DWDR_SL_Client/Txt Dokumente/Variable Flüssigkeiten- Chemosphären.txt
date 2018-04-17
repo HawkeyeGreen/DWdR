@@ -1,0 +1,8 @@
+﻿Chemosphäre: Variable Verbindung: Lebensformen hervorbringend
+H2O			~ +18 °C		Hohe Chance auf Leben				Weiteres: Chiralität
+H2SO4		~ -66 °C		Mäßige Chance auf Leben				Weiteres: Immun gegen Säuren
+H2S/ HF		~ -70 °C		Normale Chance auf Leben			Weiteres: Extrem widerstandsfähig gegen Chemie
+NH3			~ -115 °C		Gute Chance auf Leben				Weiteres: Unempfindlich gegen Gifte
+Methan		~ -170°C		Normale Chance auf Leben			Weiteres: Sehr viel leichter
+SiO2		~ + 1000 °C		Geringe Chance auf Leben			Weiteres: Sehr selten, Immun gegen alle Gifte (außer speziellen)
+																		  Äußerst anders. Empfindlich gegen Kälte, Sehr unempfindlich gegen hohe Temeperaturen

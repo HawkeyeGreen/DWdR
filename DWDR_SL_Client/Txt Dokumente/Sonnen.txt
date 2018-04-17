@@ -1,0 +1,9 @@
+﻿Name				Chancenmodifikator		Helligkeit			Spezialressourcen
+Schwarzes Loch				2					0					Schwarze Materie
+Neutronenstern				2					1					Neutronium
+Quarkstern					2					1
+Weißer Zwerg				1					3
+Roter Riese					1					2
+Protostern					3					1					Sternenessenz
+Normaler Hauptreihenstern	1					2				
+Gravastern					3					1					Gravistan
