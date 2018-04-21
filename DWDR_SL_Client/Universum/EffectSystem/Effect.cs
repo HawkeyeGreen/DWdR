@@ -82,8 +82,21 @@ namespace DWDR_SL_Client.Universum.EffectSystem
         }
     }
 
+    /*  ConditionChecker
+     *  Diese Klasse wird beim Initialisieren des Effect
+     *  mit allen Informationen und Verknüpfungen versorgt, die er benötigt,
+     *  um zu überprüfen, ob seine Bedingungen aktuell sind.
+     */
     class ConditionChecker
     {
+        public bool amITrue()
+        {
+            return true;
+        }
 
+        public void saveMe(string effectPath)
+        {
+
+        }
     }
 }
