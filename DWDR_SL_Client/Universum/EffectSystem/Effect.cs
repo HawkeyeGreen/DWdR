@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DWDR_SL_Client.Organization;
 
 namespace DWDR_SL_Client.Universum.EffectSystem
 {
@@ -89,6 +87,9 @@ namespace DWDR_SL_Client.Universum.EffectSystem
      */
     class ConditionChecker
     {
+
+        ConditionContainer condition = new ConditionContainer();
+
         public bool amITrue()
         {
             return true;

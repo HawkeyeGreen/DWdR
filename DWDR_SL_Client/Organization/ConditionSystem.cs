@@ -25,6 +25,7 @@ namespace DWDR_SL_Client.Organization
      * ob EINE der Bedingungen zu trifft.
      * 
      */
+
     class ConditionContainer
     {
         public List<ConditionSegment> segments = new List<ConditionSegment>();
