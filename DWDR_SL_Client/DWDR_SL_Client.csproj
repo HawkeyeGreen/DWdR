@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Organization\ConditionSystem.cs" />
     <Compile Include="Organization\Global_ID_Management.cs" />
+    <Compile Include="Organization\Round.cs" />
     <Compile Include="Organization\StringedReference.cs" />
     <Compile Include="Organization\Vector3D.cs" />
     <Compile Include="Program.cs" />

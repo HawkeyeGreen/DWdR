@@ -42,6 +42,31 @@ namespace DWDR_SL_Client.Universum.EffectSystem
 
         public string myName = "dummyEffect";
         int timeIAmActive = 0;
+        int roundIStarted = 0;
+        int lastRoundIWasChecked = 0;
+
+        public ModifierEnvelope update()
+        {
+            ModifierEnvelope returnMe = new ModifierEnvelope();
+
+            if(lastRoundIWasChecked < Round.currentRound)
+            {
+                timeIAmActive = Round.currentRound - roundIStarted;
+                returnMe.roundsGone = timeIAmActive;
+                lastRoundIWasChecked = Round.currentRound;
+            }
+
+            if(checking.amITrue())
+            {
+                foreach(Modifier mod in modifiers) { returnMe.Collect(mod); }
+            }
+            else
+            {
+                returnMe.amINeutral = true;
+            }
+
+            return returnMe;
+        }
     }
 
     /*  Ein Modifier enthält seinen Typ, sein Zielwert und die Stärke der Modifikation.
@@ -72,11 +97,11 @@ namespace DWDR_SL_Client.Universum.EffectSystem
                     double Zinsfuß = value * 100 - 100;
                     double Basis = 1 + Zinsfuß / 100;
                     double potence = Convert.ToDouble(roundsGone);
-                    return Math.Pow(Basis, potence);
+                    return Math.Pow(Basis, potence); // Rückgabe, wenn Multiplikativ
                 }
-                return roundsGone * value;
+                return roundsGone * value; // Rückgabe, wenn additiv
             }
-            return value;
+            return value; // Rückgabe, wenn statisch bzw. nicht Counting
         }
     }
 
