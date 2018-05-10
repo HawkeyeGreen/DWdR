@@ -15,7 +15,7 @@ namespace DWDR_SL_Client.Universum
         string myPath;
         public long ID;
 
-        EffectManager effectManagement;
+        public EffectManager effectManagement;
 
         public string systematic_name;
         public string named;

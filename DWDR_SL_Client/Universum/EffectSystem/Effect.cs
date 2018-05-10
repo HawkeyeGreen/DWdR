@@ -33,28 +33,25 @@ namespace DWDR_SL_Client.Universum.EffectSystem
         ConditionChecker checking = new ConditionChecker();
         List<Modifier> modifiers = new List<Modifier>();
 
-        #region target-validation
-        List<string> tags = new List<string>();
-        List<string> targetedValues = new List<string>();
-        List<string> validTargetTypes = new List<string>();
-        List<string> penetratedResistances = new List<string>();
-        #endregion
-
         public string myName = "dummyEffect";
+        public bool active = true;
+
         int timeIAmActive = 0;
         int roundIStarted = 0;
         int lastRoundIWasChecked = 0;
 
+        List<string> targetedValues = new List<string>();
+
         public ModifierEnvelope update()
         {
             ModifierEnvelope returnMe = new ModifierEnvelope();
-
             if(lastRoundIWasChecked < Round.currentRound)
             {
                 timeIAmActive = Round.currentRound - roundIStarted;
                 returnMe.roundsGone = timeIAmActive;
                 lastRoundIWasChecked = Round.currentRound;
             }
+
 
             if(checking.amITrue())
             {
@@ -112,12 +109,45 @@ namespace DWDR_SL_Client.Universum.EffectSystem
      */
     class ConditionChecker
     {
+        #region target-validation
+        List<string> tags = new List<string>();
+        List<string> validTargetTypes = new List<string>();
+        List<string> penetratedResistances = new List<string>();
+        List<int> piercingStrengths = new List<int>();
+        #endregion
 
+
+        Spaceobject myHost;
         ConditionContainer condition = new ConditionContainer();
+
+        public void setMeUp()
+        {
+
+        }
 
         public bool amITrue()
         {
-            return true;
+            bool ReturnMe = true;
+            ReturnMe = true & condition.checkMe(myHost) & targetTypeValidation() & resistancePiercingConfirmation();
+            return ReturnMe;
+        }
+
+        public bool targetTypeValidation()
+        {
+            return validTargetTypes.Contains(myHost.getType());
+        }
+
+        public bool resistancePiercingConfirmation()
+        {
+            bool returnMe = true;
+            if(myHost.getType() == "planet")
+            {
+                Planet tmp = new Universum.Planet();
+                tmp.loadMe(myHost.getPath());
+                returnMe = tmp.effectManagement.canPierceMe(piercingStrengths, penetratedResistances);
+            }
+
+            return returnMe;
         }
 
         public void saveMe(string effectPath)

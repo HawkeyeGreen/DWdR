@@ -66,6 +66,7 @@
     <Compile Include="Universum\Ecosystem\Ecosystem.cs" />
     <Compile Include="Universum\Ecosystem\Lifeform.cs" />
     <Compile Include="Universum\EffectSystem\Effect.cs" />
+    <Compile Include="Universum\EffectSystem\EffectDeployKit.cs" />
     <Compile Include="Universum\EffectSystem\EffectManager.cs" />
     <Compile Include="Universum\EffectSystem\ModifierEnvelope.cs" />
     <Compile Include="Universum\ManagementSystems\BaseTypeManagement.cs" />
