@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using DWDR_SL_Client.Organization;
 using DWDR_SL_Client.Universum.ManagementSystems;
+using DWDR_SL_Client.Universum.EffectSystem;
 
 namespace DWDR_SL_Client.Universum
 {
@@ -13,6 +14,8 @@ namespace DWDR_SL_Client.Universum
     {
         string myPath;
         public long ID;
+
+        EffectManager effectManagement;
 
         public string systematic_name;
         public string named;

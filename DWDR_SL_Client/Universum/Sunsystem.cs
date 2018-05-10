@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using DWDR_SL_Client.Organization;
 using System.IO;
 using DWDR_SL_Client.Universum.ManagementSystems;
+using DWDR_SL_Client.Universum.EffectSystem;
 
 namespace DWDR_SL_Client.Universum
 {
     /**********************Konzept**********************
      * Sonnensysteme sind eine höhere Zoomstufe im Universum.
      * In ihnen wird alles von der/ den Sonnen aus benannt.
-     * 
      ***************************************************/
     class Sunsystem
     {
@@ -32,6 +32,7 @@ namespace DWDR_SL_Client.Universum
         List<Spaceobject> wanderingObjectList = new List<Spaceobject>();
         List<List<Spaceobject>> asteroidBeltObjects = new List<List<Spaceobject>>();
 
+        EffectManager effectManagement;
 
 
         // Die createMe-Funktion erstellt aus den Parametern, die vom Universums-Konstruktor kommen,
