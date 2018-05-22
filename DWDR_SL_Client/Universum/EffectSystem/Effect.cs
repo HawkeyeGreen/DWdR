@@ -42,6 +42,49 @@ namespace DWDR_SL_Client.Universum.EffectSystem
 
         List<string> targetedValues = new List<string>();
 
+
+        /****** Konstruktor *********
+         * Mit dieser Funktion werden alle den Effekt betreffenden
+         * Werte initialisiert, so dass der Effekt effektiv genutzt 
+         * werden kann.
+         * 
+         * D.h. folgende Attribute müssen aufgesetzt werden:
+         * checker
+         * modifiers
+         * myName
+         * active
+         * roundIStarted
+         * targetedValues
+         */
+        public void initialize()
+        {
+
+        }
+
+        /******** Speichern ******
+         * Diese Funktion soll den Effekt und alle zu ihm gehörenden Inhalte
+         * im angegebenen Pfad speichern. Der Pfad zeigt dabei auf das Wurzelverzeichnis für den
+         * Effekt.
+         * 
+         * Diese Funktion ruft auch die passenden Funktionen für die Modifier und
+         * den ConditionChecker auf.
+         */
+        public void save(string path)
+        {
+
+        }
+
+        /********** Laden ********
+         * Diese Funktion setzt den Effekt mit den Dateien aus
+         * dem angegebenen Pfad auf. Dabei ruft diese Funktion auch
+         * die passenden Funktionen für alle Modifier und den Checker auf.
+         */
+        public void load(string path)
+        {
+
+        }
+
+
         public ModifierEnvelope update()
         {
             ModifierEnvelope returnMe = new ModifierEnvelope();
@@ -151,6 +194,11 @@ namespace DWDR_SL_Client.Universum.EffectSystem
         }
 
         public void saveMe(string effectPath)
+        {
+
+        }
+
+        public ConditionChecker loadMe(string effectPath)
         {
 
         }
