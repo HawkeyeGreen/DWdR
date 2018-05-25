@@ -27,8 +27,16 @@ namespace DWDR_SL_Client.Universum.EffectSystem
 
     public class EffectManager
     {
-        bool resistances = false;
-        ResistanceSet resistanceSet;
+        private bool resistances = false;
+        private ResistanceSet resistanceSet;
+        private List<Effect> effects;
+
+        public EffectManager()
+        {
+            resistanceSet = new EffectSystem.ResistanceSet();
+            effects = new List<EffectSystem.Effect>();
+        }
+        
 
         public bool canPierceMe(List<int> percingStrengths, List<string> piercingBoard)
         {
@@ -37,6 +45,21 @@ namespace DWDR_SL_Client.Universum.EffectSystem
                 return resistanceSet.piercing(percingStrengths, piercingBoard);
             }
             return true;
+        }
+
+        public void addEffectManual(Effect effect)
+        {
+            effects.Add(effect);
+        }
+
+        public void addEffectByDeployKit(EffectDeployKit deployKit)
+        {
+
+        }
+
+        public void addEffectsByDeployKitSet(List<EffectDeployKit> deployKitSet)
+        {
+
         }
     }
 

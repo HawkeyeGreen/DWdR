@@ -11,8 +11,9 @@ namespace DWDR_SL_Client.Universum.EffectSystem
      * ein anderes EffectManagement gegeben. Dabei enthält das
      * DeployKit alle nötigen Informationen, um daraus ein neuen Effekt
      * zu generieren.
+
      */
-    class EffectDeployKit
+    public class EffectDeployKit
     {
 
     }
