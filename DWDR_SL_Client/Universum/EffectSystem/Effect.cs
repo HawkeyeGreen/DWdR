@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DWDR_SL_Client.Organization;
+using System.IO;
 
 namespace DWDR_SL_Client.Universum.EffectSystem
 {
@@ -200,7 +201,11 @@ namespace DWDR_SL_Client.Universum.EffectSystem
 
         public ConditionChecker loadMe(string effectPath)
         {
+            StreamReader reader = new StreamReader(File.OpenRead(effectPath + "condition.cond"));
 
+            reader.Close();
+
+            return this;
         }
     }
 }

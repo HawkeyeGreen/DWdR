@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DWDR_SL_Client.Universum;
+using System.IO;
 
 namespace DWDR_SL_Client.Organization
 {
@@ -49,6 +50,19 @@ namespace DWDR_SL_Client.Organization
             {
                 return checkSegment(segmentsToCheck.GetRange(1, segmentsToCheck.Count - 1), possibleSpaceObjectTarget);
             }
+        }
+
+        public ConditionContainer load(String targetPath)
+        {
+            StreamReader reader = new StreamReader(File.OpenRead(targetPath + "container.cct"));
+            int segment_count = Convert.ToInt32(reader.ReadLine());
+            reader.Close();
+            for(int i = 0; i< segment_count; i++)
+            {
+                ConditionSegment tmp = new Organization.ConditionSegment();
+                tmp.load(targetPath + "segment-" + Convert.ToString(i) + ".csg");
+            }
+            return this;
         }
     }
 
@@ -237,6 +251,17 @@ namespace DWDR_SL_Client.Organization
             {
                 return false;
             }
+        }
+
+        public void load(string targetPath)
+        {
+            StreamReader reader = new StreamReader(File.OpenRead(targetPath));
+            int cCount = Convert.ToInt32(reader.ReadLine());
+            for(int i = 0; i < cCount; i++)
+            {
+                // Logik fürs Laden einer Condition
+            }
+            reader.Close();
         }
     }
 }
