@@ -54,14 +54,9 @@ namespace DWDR_SL_Client.Organization
 
         public ConditionContainer load(String targetPath)
         {
-            StreamReader reader = new StreamReader(File.OpenRead(targetPath + "container.cct"));
-            int segment_count = Convert.ToInt32(reader.ReadLine());
+            StreamReader reader = new StreamReader(File.OpenRead(targetPath + "condition_container.cc"));
+            if(reader.ReadLine().Contains("def Segment")) { segments.Add(ConditionSegment.parseSegment(reader)); }
             reader.Close();
-            for(int i = 0; i< segment_count; i++)
-            {
-                ConditionSegment tmp = new Organization.ConditionSegment();
-                tmp.load(targetPath + "segment-" + Convert.ToString(i) + ".csg");
-            }
             return this;
         }
     }
@@ -216,6 +211,14 @@ namespace DWDR_SL_Client.Organization
                 return false;
             }
         }
+
+        public static Condition parseCondition(StreamReader reader)
+        {
+            Condition condition = new Condition();
+
+
+            return condition;
+        }
     }
 
     class ConditionSegment
@@ -253,15 +256,23 @@ namespace DWDR_SL_Client.Organization
             }
         }
 
-        public void load(string targetPath)
+        public static ConditionSegment parseSegment(StreamReader reader)
         {
-            StreamReader reader = new StreamReader(File.OpenRead(targetPath));
-            int cCount = Convert.ToInt32(reader.ReadLine());
-            for(int i = 0; i < cCount; i++)
+            ConditionSegment segment = new ConditionSegment();
+            bool reading = true;
+            while(reading)
             {
-                // Logik fürs Laden einer Condition
+                string line = reader.ReadLine();
+                if (line.Contains("def Condition"))
+                {
+                    segment.conditions.Add(Condition.parseCondition(reader));
+                }
+                else if(line.Contains("end Segment"))
+                {
+                    reading = false;
+                }
             }
-            reader.Close();
+            return segment;
         }
     }
 }
