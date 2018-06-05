@@ -10,6 +10,9 @@ namespace DWDR_SL_Client.Universum
 {
     class Universe
     {
+        // SINGLETON IMPLEMENTATION //
+        private static Universe instance;
+
         // Globale System Variablen //
         string workingDirectory;
 
@@ -27,7 +30,7 @@ namespace DWDR_SL_Client.Universum
         List<string> sunPaths           = new List<string>();
         List<string> planetPaths        = new List<string>();
 
-        public Universe(string workingPath)
+        private Universe(string workingPath)
         {
             workingDirectory = workingPath;
             #region Check if all necessary files and folders exists
@@ -121,6 +124,20 @@ namespace DWDR_SL_Client.Universum
             reader.Close();
             #endregion
             #endregion
+        }
+
+        public static Universe getInstance(string workingPath)
+        {
+            if(instance == null)
+            {
+                Universe.instance = new Universe(workingPath);
+            }
+            return instance;
+        }
+
+        public void reinitialize(string workingPath)
+        {
+
         }
 
         public Galaxy getGalaxyByID(int ID)

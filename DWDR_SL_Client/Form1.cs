@@ -17,7 +17,7 @@ namespace DWDR_SL_Client
     {
         // Klassen initialisieren //
         Universe universe;
-        Global_ID_Management GIDM = new Global_ID_Management();
+        Global_ID_Management GIDM = Global_ID_Management.getInstance();
         List<Spaceobject> spaceObjects = new List<Spaceobject>();
 
         public Form1()
@@ -27,12 +27,12 @@ namespace DWDR_SL_Client
 
         private void neuladenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            universe = new Universe(AppDomain.CurrentDomain.BaseDirectory);
+            universe = Universe.getInstance(AppDomain.CurrentDomain.BaseDirectory);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            universe = new Universe(AppDomain.CurrentDomain.BaseDirectory);
+            universe = Universe.getInstance(AppDomain.CurrentDomain.BaseDirectory);
             spaceObjects = universe.getAnySpaceObjectInRadiusAround(new Vector3D(), 1.0f);
             actualizetollStripInfoGIDM();
         }
