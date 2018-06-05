@@ -37,4 +37,36 @@ namespace DWDR_SL_Client.Universum
         public string getType() { return type; }
         public string getPath() { return path; }
     }
+
+    interface ISpaceObject
+    {
+        // Muss Vektor für Position enthalten
+        // Muss Pfad zum "echten" Objekt enthalten
+        // Muss einen type haben
+        // Muss einer plane zu geordnet sein
+        
+        Vector3D position
+        {
+            get;
+            set;
+        }
+
+        string plane
+        {
+            get;
+            set;
+        }
+
+        string type
+        {
+            get;
+            set;
+        }
+
+        string path
+        {
+            get;
+            set;
+        }
+    }
 }
