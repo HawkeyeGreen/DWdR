@@ -24,7 +24,7 @@ namespace DWDR_SL_Client.Universum
         List<Spaceobject> wanderingSpaceObjects  = new List<Spaceobject>();
         List<Spaceobject> sunsystems = new List<Spaceobject>();
         List<Spaceobject> roamingSuns = new List<Spaceobject>();
-        List<Spaceobject> roamingPlanets = new List<Spaceobject>();
+        List<ISpaceObject> roamingPlanets = new List<ISpaceObject>();
 
         List<string> sunsystemPaths     = new List<string>();
         List<string> sunPaths           = new List<string>();
@@ -117,8 +117,8 @@ namespace DWDR_SL_Client.Universum
             {
                 planetPaths.Add(Convert.ToString(reader.ReadLine()));
                 Planet planet = new Planet().loadMe(planetPaths[i]);
-                Spaceobject tmp = new Spaceobject(planet.position, "planet", planet.ID, planet.systematic_name, new List<string>(), planetPaths[i]);
-                roamingPlanets.Add(tmp);
+                //Spaceobject tmp = new Spaceobject(planet.position, "planet", planet.id, planet.systematic_name, new List<string>(), planetPaths[i]);
+                roamingPlanets.Add(planet);
                 
             }
             reader.Close();

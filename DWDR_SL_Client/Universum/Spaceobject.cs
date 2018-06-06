@@ -68,5 +68,11 @@ namespace DWDR_SL_Client.Universum
             get;
             set;
         }
+
+        long id
+        {
+            get;
+            set;
+        }
     }
 }

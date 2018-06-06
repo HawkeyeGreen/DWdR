@@ -20,7 +20,18 @@ namespace DWDR_SL_Client.Universum
         string plane = "main";
         string type = "planet";
 
-        public Vector3D position = new Vector3D();
+        public Vector3D position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
+            }
+        }
         public Vector3D direction = new Vector3D();
         public Vector3D magic_vec = new Vector3D();
         public Vector3D carmal_vec = new Vector3D();
@@ -40,6 +51,76 @@ namespace DWDR_SL_Client.Universum
         public bool inhabited;
 
         List<string> communities = new List<string>();
+
+        Vector3D ISpaceObject.position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
+            }
+        }
+
+        string ISpaceObject.plane
+        {
+            get
+            {
+                return plane;
+            }
+
+            set
+            {
+                plane = value;
+            }
+        }
+
+        string ISpaceObject.type
+        {
+            get
+            {
+                return type;
+            }
+
+            set
+            {
+               type = value;
+            }
+        }
+
+        string ISpaceObject.path
+        {
+            get
+            {
+                return path;
+            }
+
+            set
+            {
+                path = value;
+            }
+        }
+
+        public long id
+        {
+            get
+            {
+                return ID;
+            }
+
+            set
+            {
+                ID = value; ;
+            }
+        }
+
+        public Planet()
+        {
+            position = new Organization.Vector3D();
+        }
 
         public Planet createMe(string pathForDirectory, float radius, Vector3D position, string systematicName, long ID, Global_ID_Management GIDM, Sunsystem sunsystem, List<PlanetGenerationProfile> allowedProfiles)
         {
@@ -128,11 +209,5 @@ namespace DWDR_SL_Client.Universum
                 return -1;
             }
         }
-
-        public string getPath() { return path; }
-
-        public void setPath(string path) { this.path = path; }
-
-        public string getPlane() { return plane; }
     }
 }
