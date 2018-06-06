@@ -9,22 +9,23 @@ using DWDR_SL_Client.Universum.ManagementSystems;
 
 namespace DWDR_SL_Client.Universum
 {
-    class Planet
+    class Planet : ISpaceObject
     {
-        string myPath;
-        public long ID;
+        string path;
+        long ID;
 
         public string systematic_name;
         public string named;
         public string claimed_by;
-        public string plane = "main";
+        string plane = "main";
+        string type = "planet";
 
         public Vector3D position = new Vector3D();
         public Vector3D direction = new Vector3D();
         public Vector3D magic_vec = new Vector3D();
         public Vector3D carmal_vec = new Vector3D();
 
-        public int type = -1;
+        public int typeNumber = -1;
         public int size;
         public int surface;
         public int humidity_level;
@@ -54,14 +55,14 @@ namespace DWDR_SL_Client.Universum
 
         public Planet loadMe(string Path)
         {
-            myPath = Path;
+            path = Path;
 
-            StreamReader reader = new StreamReader(File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + myPath));
+            StreamReader reader = new StreamReader(File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + path));
 
             systematic_name = Convert.ToString(reader.ReadLine());
             ID = Convert.ToInt64(reader.ReadLine());
             named = Convert.ToString(reader.ReadLine());
-            type = Convert.ToInt16(reader.ReadLine());
+            typeNumber = Convert.ToInt16(reader.ReadLine());
             claimed = Convert.ToBoolean(reader.ReadLine());
 
             humidity_level = Convert.ToInt32(reader.ReadLine());
@@ -77,11 +78,11 @@ namespace DWDR_SL_Client.Universum
 
         public void saveMe()
         {
-            StreamWriter writer = new StreamWriter(File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + myPath));
+            StreamWriter writer = new StreamWriter(File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + path));
 
             writer.WriteLine(systematic_name);
             writer.WriteLine(named);
-            writer.WriteLine(type);
+            writer.WriteLine(typeNumber);
             writer.WriteLine(claimed);
 
             writer.WriteLine(position.getStringVersion());
@@ -96,7 +97,7 @@ namespace DWDR_SL_Client.Universum
         {
             if(attribute == "type")
             {
-                return type;
+                return typeNumber;
             }
             else if(attribute == "size")
             {
@@ -127,5 +128,11 @@ namespace DWDR_SL_Client.Universum
                 return -1;
             }
         }
+
+        public string getPath() { return path; }
+
+        public void setPath(string path) { this.path = path; }
+
+        public string getPlane() { return plane; }
     }
 }
