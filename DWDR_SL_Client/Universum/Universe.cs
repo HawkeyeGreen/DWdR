@@ -21,9 +21,9 @@ namespace DWDR_SL_Client.Universum
         List<Galaxy> galaxies           = new List<Galaxy>();
 
         // Referenzen auf Raumobjekte
-        List<Spaceobject> wanderingSpaceObjects  = new List<Spaceobject>();
-        List<Spaceobject> sunsystems = new List<Spaceobject>();
-        List<Spaceobject> roamingSuns = new List<Spaceobject>();
+        List<ISpaceObject> wanderingSpaceObjects  = new List<ISpaceObject>();
+        List<ISpaceObject> sunsystems = new List<ISpaceObject>();
+        List<ISpaceObject> roamingSuns = new List<ISpaceObject>();
         List<ISpaceObject> roamingPlanets = new List<ISpaceObject>();
 
         List<string> sunsystemPaths     = new List<string>();
@@ -92,10 +92,10 @@ namespace DWDR_SL_Client.Universum
             {
                 string path = Convert.ToString(reader.ReadLine());
                 Sunsystem tmp = new Sunsystem();
-                Spaceobject spaceObj = tmp.thatsMe(path);
+                tmp.loadMe(path);
 
                 sunsystemPaths.Add(path);
-                sunsystems.Add(spaceObj);
+                sunsystems.Add(tmp);
             }
             reader.Close();
             #endregion
@@ -170,11 +170,11 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
-        public List<Spaceobject> getSpaceObjectsByPosition(List<Spaceobject> spaceObjects,Vector3D checkPosition, float radius)
+        public List<ISpaceObject> getSpaceObjectsByPosition(List<ISpaceObject> spaceObjects,Vector3D checkPosition, float radius)
         {
-            List<Spaceobject> Return = new List<Spaceobject>();
+            List<ISpaceObject> Return = new List<ISpaceObject>();
 
-            foreach (Spaceobject spaceObject in spaceObjects)
+            foreach (ISpaceObject spaceObject in spaceObjects)
             {
                 float distance = spaceObject.position.createVectorBetween(checkPosition).length();
                 if (distance <= radius)
@@ -186,9 +186,9 @@ namespace DWDR_SL_Client.Universum
             return Return;
         }
 
-        public List<Spaceobject> getAnySpaceObjectInRadiusAround(Vector3D checkPosition, float radius)
+        public List<ISpaceObject> getAnySpaceObjectInRadiusAround(Vector3D checkPosition, float radius)
         {
-            List<Spaceobject> Return = getSpaceObjectsByPosition(wanderingSpaceObjects, checkPosition, radius);
+            List<ISpaceObject> Return = getSpaceObjectsByPosition(wanderingSpaceObjects, checkPosition, radius);
             Return.AddRange(getSpaceObjectsByPosition(sunsystems, checkPosition, radius));
             Return.AddRange(getSpaceObjectsByPosition(roamingSuns, checkPosition, radius));
             Return.AddRange(getSpaceObjectsByPosition(roamingPlanets, checkPosition, radius));

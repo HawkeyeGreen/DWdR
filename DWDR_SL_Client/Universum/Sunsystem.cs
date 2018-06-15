@@ -14,23 +14,88 @@ namespace DWDR_SL_Client.Universum
      * In ihnen wird alles von der/ den Sonnen aus benannt.
      * 
      ***************************************************/
-    class Sunsystem
+    class Sunsystem : ISpaceObject
     {
         string myDirectory;
-        long id = -1;
+        //long id = -1;
 
         public string systematic_Name;
         public string given_Name = "Unbenanntes Sonnensystem";
-        public string plane = "main";
+        //string plane = "main";
 
         public int AsteroidBelts;
 
-        Vector3D position = new Vector3D();
+        //Vector3D position = new Vector3D();
 
-        List<Spaceobject> sunList = new List<Spaceobject>();
+        List<ISpaceObject> sunList = new List<ISpaceObject>();
         List<Spaceobject> planetList = new List<Spaceobject>();
         List<Spaceobject> wanderingObjectList = new List<Spaceobject>();
         List<List<Spaceobject>> asteroidBeltObjects = new List<List<Spaceobject>>();
+
+        public Vector3D position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
+            }
+        }
+
+        public string plane
+        {
+            get
+            {
+                return plane;
+            }
+
+            set
+            {
+                plane = value;
+            }
+        }
+
+        public string type
+        {
+            get
+            {
+                return type;
+            }
+
+            set
+            {
+                type = value;
+            }
+        }
+
+        public string path
+        {
+            get
+            {
+                return myDirectory;
+            }
+
+            set
+            {
+                myDirectory = value;
+            }
+        }
+
+        public long id
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
 
 
 
@@ -64,7 +129,8 @@ namespace DWDR_SL_Client.Universum
             for (int i = 0; i < suns; i++)
             {
                 Sun newSun = new Sun();
-                sunList.Add(newSun.createMe(possibleSunstypes[rnd.Next(0, possibleSunstypes.Count)], systematic_Name + "-" + Convert.ToString(i), pathForDirectory + "/s" + Convert.ToString(i) + ".s", GIDM, rnd));
+                newSun.createMe(possibleSunstypes[rnd.Next(0, possibleSunstypes.Count)], systematic_Name + "-" + Convert.ToString(i), pathForDirectory + "/s" + Convert.ToString(i) + ".s", GIDM, rnd);
+                sunList.Add(newSun);
             }
 
 
