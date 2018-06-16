@@ -176,7 +176,7 @@ namespace DWDR_SL_Client.Universum
 
             foreach (ISpaceObject spaceObject in spaceObjects)
             {
-                float distance = spaceObject.position.createVectorBetween(checkPosition).length();
+                float distance = spaceObject.Position.createVectorBetween(checkPosition).length();
                 if (distance <= radius)
                 {
                     Return.Add(spaceObject);

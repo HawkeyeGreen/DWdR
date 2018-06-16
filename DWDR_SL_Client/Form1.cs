@@ -18,7 +18,7 @@ namespace DWDR_SL_Client
         // Klassen initialisieren //
         Universe universe;
         Global_ID_Management GIDM = Global_ID_Management.getInstance();
-        List<Spaceobject> spaceObjects = new List<Spaceobject>();
+        List<ISpaceObject> spaceObjects = new List<ISpaceObject>();
 
         public Form1()
         {

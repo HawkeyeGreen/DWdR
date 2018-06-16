@@ -6,45 +6,33 @@ using System.Threading.Tasks;
 using System.IO;
 using DWDR_SL_Client.Organization;
 using DWDR_SL_Client.Universum.ManagementSystems;
+using DWDR_SL_Client.Universum.Planets;
 
 namespace DWDR_SL_Client.Universum
 {
     class Planet : ISpaceObject
     {
-        string path;
-        long ID;
+        private string myPath;
+        private long id;
 
-        public string systematic_name;
+        private string systematic_name = "TBD";
         public string named;
         public string claimed_by;
-        string plane = "main";
-        string type = "planet";
+        private string plane = "main";
 
-        public Vector3D position
-        {
-            get
-            {
-                return position;
-            }
-
-            set
-            {
-                position = value;
-            }
-        }
+        private Vector3D position = new Vector3D();
         public Vector3D direction = new Vector3D();
         public Vector3D magic_vec = new Vector3D();
         public Vector3D carmal_vec = new Vector3D();
 
-        public int typeNumber = -1;
+        private string type = "planet";
         public int size;
         public int surface;
         public int humidity_level;
         public int temperature;
         public int carmal;
         public int magic;
-
-        public float radius = 1.0f;
+        private float radius = 1.0f;
 
         public bool ecosystem;
         public bool claimed;
@@ -52,79 +40,19 @@ namespace DWDR_SL_Client.Universum
 
         List<string> communities = new List<string>();
 
-        Vector3D ISpaceObject.position
-        {
-            get
-            {
-                return position;
-            }
+        public Vector3D Position { get => position; set => position = value; }
+        public string Plane { get => plane; set => plane = value; }
+        public string Type { get => type; set => type = value; }
+        public string Path { get => myPath; set => myPath = value; }
+        public long ID { get => id; set => id = value; }
 
-            set
-            {
-                position = value;
-            }
-        }
-
-        string ISpaceObject.plane
-        {
-            get
-            {
-                return plane;
-            }
-
-            set
-            {
-                plane = value;
-            }
-        }
-
-        string ISpaceObject.type
-        {
-            get
-            {
-                return type;
-            }
-
-            set
-            {
-               type = value;
-            }
-        }
-
-        string ISpaceObject.path
-        {
-            get
-            {
-                return path;
-            }
-
-            set
-            {
-                path = value;
-            }
-        }
-
-        public long id
-        {
-            get
-            {
-                return ID;
-            }
-
-            set
-            {
-                ID = value; ;
-            }
-        }
-
-        public Planet()
-        {
-            position = new Organization.Vector3D();
-        }
+        public string Systematic_name { get => systematic_name; set => systematic_name = value; }
+        public float Radius { get => radius; set => radius = value; }
 
         public Planet createMe(string pathForDirectory, float radius, Vector3D position, string systematicName, long ID, Global_ID_Management GIDM, Sunsystem sunsystem, List<PlanetGenerationProfile> allowedProfiles)
         {
-            
+            this.radius = radius;
+            this.position = position;
 
             return this;
         }
@@ -136,14 +64,14 @@ namespace DWDR_SL_Client.Universum
 
         public Planet loadMe(string Path)
         {
-            path = Path;
+            myPath = Path;
 
-            StreamReader reader = new StreamReader(File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + path));
+            StreamReader reader = new StreamReader(File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + myPath));
 
-            systematic_name = Convert.ToString(reader.ReadLine());
+            Systematic_name = Convert.ToString(reader.ReadLine());
             ID = Convert.ToInt64(reader.ReadLine());
             named = Convert.ToString(reader.ReadLine());
-            typeNumber = Convert.ToInt16(reader.ReadLine());
+            Type = Convert.ToString(reader.ReadLine());
             claimed = Convert.ToBoolean(reader.ReadLine());
 
             humidity_level = Convert.ToInt32(reader.ReadLine());
@@ -159,11 +87,11 @@ namespace DWDR_SL_Client.Universum
 
         public void saveMe()
         {
-            StreamWriter writer = new StreamWriter(File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + path));
+            StreamWriter writer = new StreamWriter(File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + myPath));
 
-            writer.WriteLine(systematic_name);
+            writer.WriteLine(Systematic_name);
             writer.WriteLine(named);
-            writer.WriteLine(typeNumber);
+            writer.WriteLine(Type);
             writer.WriteLine(claimed);
 
             writer.WriteLine(position.getStringVersion());
@@ -176,11 +104,7 @@ namespace DWDR_SL_Client.Universum
 
         public int getIntegerValue(string attribute)
         {
-            if(attribute == "type")
-            {
-                return typeNumber;
-            }
-            else if(attribute == "size")
+            if(attribute == "size")
             {
                 return size;
             }

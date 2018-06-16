@@ -11,23 +11,28 @@ namespace DWDR_SL_Client.Universum
 {
     class Sun : ISpaceObject
     {
-        //long ID = -1;
-        //string myPath;
+        private long id = -1;
+        private string myPath;
+
+        private Temperature temperature = new Temperature(5800);
 
         public string systematic_name;
         public string name;
 
-        //Vector3D position = new Vector3D();
+        private Vector3D position = new Vector3D();
 
         public int suntype;
         public int size;
-        //public string plane;
+        private string plane = "main";
+        private string type = "sun";
 
         public float radius = 5.0f;
 
         public AbstractYieldSet yield;
 
-        public Vector3D position
+        #region GetterSetter
+
+        public Vector3D Position
         {
             get
             {
@@ -36,11 +41,11 @@ namespace DWDR_SL_Client.Universum
 
             set
             {
-                throw new NotImplementedException();
+                position = value;
             }
         }
 
-        public string plane
+        public string Plane
         {
             get
             {
@@ -53,7 +58,7 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
-        public string type
+        public string Type
         {
             get
             {
@@ -66,20 +71,20 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
-        public string path
+        public string Path
         {
             get
             {
-                return path;
+                return myPath;
             }
 
             set
             {
-                path = value;
+                myPath = value;
             }
         }
 
-        public long id
+        public long ID
         {
             get
             {
@@ -92,11 +97,17 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
+        public Temperature Temperature
+        {
+            get => temperature;
+            set => temperature = value;
+        }
+        #endregion
+
         public void createMe(int suntype, string systematicName, string PathForFile, Global_ID_Management GIDM, Random rnd)
         {
-            Spaceobject thatsMe;
-            id = GIDM.insertEntry("sun").id;
-            path = PathForFile;
+            ID = GIDM.insertEntry("sun").id;
+            Path = PathForFile;
 
             this.suntype = suntype;
 
@@ -108,16 +119,16 @@ namespace DWDR_SL_Client.Universum
 
         public void saveMe()
         {
-            StreamWriter writer = new StreamWriter(File.OpenWrite(path + "main.sun"));
+            StreamWriter writer = new StreamWriter(File.OpenWrite(Path + "main.sun"));
 
             writer.WriteLine(systematic_name);
             writer.WriteLine(name);
-            writer.WriteLine(plane);
-            writer.WriteLine(position.getStringVersion());
+            writer.WriteLine(Plane);
+            writer.WriteLine(Position.getStringVersion());
 
-            writer.WriteLine(Convert.ToString(id));
+            writer.WriteLine(Convert.ToString(ID));
             writer.WriteLine(Convert.ToString(radius));
-            writer.WriteLine(Convert.ToString(type));
+            writer.WriteLine(Convert.ToString(Type));
             writer.WriteLine(Convert.ToString(size));
 
 
@@ -132,11 +143,11 @@ namespace DWDR_SL_Client.Universum
 
             systematic_name = Convert.ToString(reader.ReadLine());
             name = Convert.ToString(reader.ReadLine());
-            plane = Convert.ToString(reader.ReadLine());
+            Plane = Convert.ToString(reader.ReadLine());
 
-            position.FromString(Convert.ToString(reader.ReadLine()));
+            Position.FromString(Convert.ToString(reader.ReadLine()));
 
-            id = Convert.ToInt64(reader.ReadLine());
+            ID = Convert.ToInt64(reader.ReadLine());
             radius = Convert.ToSingle(reader.ReadLine());
 
             suntype = Convert.ToInt32(reader.ReadLine());

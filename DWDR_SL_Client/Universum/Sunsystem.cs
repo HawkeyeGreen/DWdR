@@ -16,23 +16,27 @@ namespace DWDR_SL_Client.Universum
      ***************************************************/
     class Sunsystem : ISpaceObject
     {
-        string myDirectory;
-        //long id = -1;
+        #region Fields
+        private string myDirectory;
+        private long id = -1;
 
-        public string systematic_Name;
-        public string given_Name = "Unbenanntes Sonnensystem";
-        //string plane = "main";
+        private string systematic_Name = "TBD";
+        private string given_Name = "Unbenanntes Sonnensystem";
+        private string plane = "main";
+        private string type = "sunsystem";
 
-        public int AsteroidBelts;
+        private int AsteroidBelts;
 
-        //Vector3D position = new Vector3D();
+        private Vector3D position = new Vector3D();
 
         List<ISpaceObject> sunList = new List<ISpaceObject>();
-        List<Spaceobject> planetList = new List<Spaceobject>();
-        List<Spaceobject> wanderingObjectList = new List<Spaceobject>();
-        List<List<Spaceobject>> asteroidBeltObjects = new List<List<Spaceobject>>();
+        List<ISpaceObject> planetList = new List<ISpaceObject>();
+        List<ISpaceObject> wanderingObjectList = new List<ISpaceObject>();
+        List<List<ISpaceObject>> asteroidBeltObjects = new List<List<ISpaceObject>>();
+        #endregion
 
-        public Vector3D position
+        #region Eigenschaften
+        public Vector3D Position
         {
             get
             {
@@ -45,7 +49,7 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
-        public string plane
+        public string Plane
         {
             get
             {
@@ -58,7 +62,7 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
-        public string type
+        public string Type
         {
             get
             {
@@ -71,7 +75,7 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
-        public string path
+        public string Path
         {
             get
             {
@@ -84,7 +88,7 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
-        public long id
+        public long ID
         {
             get
             {
@@ -97,17 +101,35 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
+        public string SystematicName
+        {
+            get => systematic_Name;
+            set => systematic_Name = value;
+        }
+
+        public string GivenName
+        {
+            get => given_Name;
+            set => given_Name = value;
+        }
+
+        public int NumberOfAsteroidBelts
+        {
+            get => AsteroidBelts;
+            private set => AsteroidBelts = value;
+        }
+        #endregion
 
 
         // Die createMe-Funktion erstellt aus den Parametern, die vom Universums-Konstruktor kommen,
         // die Inhalte des Sonnensystems.
-        // Diese Funkftion erzeugt ein 'normales' Sonnensystem.
+        // Diese Funktion erzeugt ein 'normales' Sonnensystem.
         // Für spezielle Sonnensysteme gibt es einen entsprechenden Modus,
         // ebenso für mehrfach Systeme.
         public void createMe(string pathForDirectory,int suns, int planets, float radius, Vector3D position, string systematicName, int createWanderingObjects, long ID, Global_ID_Management GIDM, Universe universe)
         {
             // Initialisiere erst einmal dich selbst ^-^
-            id = ID;
+            this.ID = ID;
             myDirectory = pathForDirectory;
             systematic_Name = systematicName;
 
@@ -140,7 +162,7 @@ namespace DWDR_SL_Client.Universum
         {
             myDirectory = pathForDirectory;
             StreamReader reader = new StreamReader(File.OpenRead(myDirectory + "sunsystem.ov"));
-            id = Convert.ToInt64(reader.ReadLine());
+            ID = Convert.ToInt64(reader.ReadLine());
             systematic_Name = Convert.ToString(reader.ReadLine());
             given_Name = Convert.ToString(reader.ReadLine());
             AsteroidBelts = Convert.ToInt32(reader.ReadLine());
@@ -151,7 +173,7 @@ namespace DWDR_SL_Client.Universum
         public Spaceobject thatsMe(string myPath)
         {
             loadMe(myPath);
-            return new Spaceobject(position, "sunsystem", id, systematic_Name, new List<string>(), myDirectory);
+            return new Spaceobject(Position, "sunsystem", ID, systematic_Name, new List<string>(), myDirectory);
         }
 
         public void saveMe()
@@ -162,7 +184,7 @@ namespace DWDR_SL_Client.Universum
             // Hauptdatei erzeugen
             // Hier stehen alle Variablen von oben drinne, die wir brauchen
             StreamWriter sw = File.CreateText(myDirectory + "/me.ov");
-            sw.WriteLine(Convert.ToString(id));
+            sw.WriteLine(Convert.ToString(ID));
             sw.WriteLine(systematic_Name);
             sw.WriteLine(given_Name);
             sw.WriteLine(Convert.ToString(AsteroidBelts));
