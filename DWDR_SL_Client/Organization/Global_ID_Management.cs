@@ -7,14 +7,23 @@ using System.IO;
 
 namespace DWDR_SL_Client.Organization
 {
+
+    // VERALTET!
+    /*
     class Global_ID_Management
     {
+
+        /// <summary>
+        /// Singleton-Pattern
+        /// </summary>
+
+        private static Global_ID_Management instance;
         string workingPath = AppDomain.CurrentDomain.BaseDirectory;
         List<List<ID_Entry>> IDs = new List<List<ID_Entry>>();
         List<ID_Group> groups = new List<ID_Group>();
         public long highestRange = 1000;
 
-        public Global_ID_Management()
+        private Global_ID_Management()
         {
             if (Directory.Exists(workingPath + "/uni") == false) { Directory.CreateDirectory(workingPath + "/uni"); }
             if (File.Exists(workingPath + "/uni/m.id") == false)
@@ -92,6 +101,15 @@ namespace DWDR_SL_Client.Organization
                 }
                 reader.Close();
             }
+        }
+
+        public static Global_ID_Management getInstance()
+        {
+            if(instance == null)
+            {
+                Global_ID_Management.instance = new Organization.Global_ID_Management();
+            }
+            return instance;
         }
 
         public ID_Entry getTypeOfID(long ID)
@@ -387,4 +405,8 @@ namespace DWDR_SL_Client.Organization
         public string type = "none";
         public bool amIActive = true;
     }
+}
+
+    */
+
 }

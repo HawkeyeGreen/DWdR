@@ -9,52 +9,130 @@ using DWDR_SL_Client.Universum.Ressources;
 
 namespace DWDR_SL_Client.Universum
 {
-    class Sun
+    class Sun : MappedObject, ISpaceObject
     {
-        long ID = -1;
-        string myPath;
+        private long id = -1;
+        private string myPath;
+
+        private Temperature temperature = new Temperature(5800);
 
         public string systematic_name;
         public string name;
 
-        public Vector3D position = new Vector3D();
+        private Vector3D position = new Vector3D();
 
-        public int type;
+        public int suntype;
         public int size;
-        public string plane;
+        private string plane = "main";
+        private string type = "sun";
 
         public float radius = 5.0f;
 
         public AbstractYieldSet yield;
 
-        public Spaceobject createMe(int suntype, string systematicName, string PathForFile, Global_ID_Management GIDM, Random rnd)
-        {
-            Spaceobject thatsMe;
-            ID = GIDM.insertEntry("sun").id;
-            myPath = PathForFile;
+        #region GetterSetter
 
-            type = suntype;
+        public Vector3D Position
+        {
+            get
+            {
+                return position;
+            }
+
+            set
+            {
+                position = value;
+            }
+        }
+
+        public string Plane
+        {
+            get
+            {
+                return plane;
+            }
+
+            set
+            {
+                plane = value;
+            }
+        }
+
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+
+            set
+            {
+                type = value;
+            }
+        }
+
+        public string Path
+        {
+            get
+            {
+                return myPath;
+            }
+
+            set
+            {
+                myPath = value;
+            }
+        }
+
+        public long ID
+        {
+            get
+            {
+                return id;
+            }
+
+            set
+            {
+                id = value;
+            }
+        }
+
+        public Temperature Temperature
+        {
+            get => temperature;
+            set => temperature = value;
+        }
+        #endregion
+
+        public Sun() : base("Sun")
+        {
+
+        }
+
+        public void createMe(int suntype, string systematicName, string PathForFile,  Random rnd)
+        {
+            Path = PathForFile;
+
+            this.suntype = suntype;
 
             yield = new AbstractYieldSet();
             createYield(rnd);
 
-            thatsMe = new Spaceobject(position, "sun", ID, systematic_name, new List<string>(), myPath);
             saveMe();
-            return thatsMe;
         }
 
         public void saveMe()
         {
-            StreamWriter writer = new StreamWriter(File.OpenWrite(myPath + "main.sun"));
+            StreamWriter writer = new StreamWriter(File.OpenWrite(Path + "main.sun"));
 
             writer.WriteLine(systematic_name);
             writer.WriteLine(name);
-            writer.WriteLine(plane);
-            writer.WriteLine(position.getStringVersion());
+            writer.WriteLine(Plane);
+            writer.WriteLine(Position.getStringVersion());
 
             writer.WriteLine(Convert.ToString(ID));
             writer.WriteLine(Convert.ToString(radius));
-            writer.WriteLine(Convert.ToString(type));
+            writer.WriteLine(Convert.ToString(Type));
             writer.WriteLine(Convert.ToString(size));
 
 
@@ -69,14 +147,14 @@ namespace DWDR_SL_Client.Universum
 
             systematic_name = Convert.ToString(reader.ReadLine());
             name = Convert.ToString(reader.ReadLine());
-            plane = Convert.ToString(reader.ReadLine());
+            Plane = Convert.ToString(reader.ReadLine());
 
-            position.FromString(Convert.ToString(reader.ReadLine()));
+            Position.FromString(Convert.ToString(reader.ReadLine()));
 
             ID = Convert.ToInt64(reader.ReadLine());
             radius = Convert.ToSingle(reader.ReadLine());
 
-            type = Convert.ToInt32(reader.ReadLine());
+            suntype = Convert.ToInt32(reader.ReadLine());
             size = Convert.ToInt32(reader.ReadLine());
 
             reader.Close();

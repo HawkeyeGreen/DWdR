@@ -33,13 +33,6 @@
             this.menüToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.universumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.neuladenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gIDMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zeigeEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zeigeStatusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aktualisiereToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripTextBoxGIDMHR = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripTextBoxGIDMGrp = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripTextBoxGIDMCount = new System.Windows.Forms.ToolStripTextBox();
             this.beendenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inhalteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.basistypenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,7 +75,6 @@
             // 
             this.menüToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.universumToolStripMenuItem,
-            this.gIDMToolStripMenuItem,
             this.beendenToolStripMenuItem});
             this.menüToolStripMenuItem.Name = "menüToolStripMenuItem";
             this.menüToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -93,7 +85,7 @@
             this.universumToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.neuladenToolStripMenuItem});
             this.universumToolStripMenuItem.Name = "universumToolStripMenuItem";
-            this.universumToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.universumToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.universumToolStripMenuItem.Text = "Universum";
             // 
             // neuladenToolStripMenuItem
@@ -103,63 +95,10 @@
             this.neuladenToolStripMenuItem.Text = "Neuladen";
             this.neuladenToolStripMenuItem.Click += new System.EventHandler(this.neuladenToolStripMenuItem_Click);
             // 
-            // gIDMToolStripMenuItem
-            // 
-            this.gIDMToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.zeigeEditorToolStripMenuItem,
-            this.zeigeStatusToolStripMenuItem});
-            this.gIDMToolStripMenuItem.Name = "gIDMToolStripMenuItem";
-            this.gIDMToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.gIDMToolStripMenuItem.Text = "GIDM";
-            // 
-            // zeigeEditorToolStripMenuItem
-            // 
-            this.zeigeEditorToolStripMenuItem.Name = "zeigeEditorToolStripMenuItem";
-            this.zeigeEditorToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.zeigeEditorToolStripMenuItem.Text = "Zeige Editor";
-            // 
-            // zeigeStatusToolStripMenuItem
-            // 
-            this.zeigeStatusToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aktualisiereToolStripMenuItem,
-            this.toolStripTextBoxGIDMHR,
-            this.toolStripTextBoxGIDMGrp,
-            this.toolStripTextBoxGIDMCount});
-            this.zeigeStatusToolStripMenuItem.Name = "zeigeStatusToolStripMenuItem";
-            this.zeigeStatusToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
-            this.zeigeStatusToolStripMenuItem.Text = "Zeige Status";
-            this.zeigeStatusToolStripMenuItem.ToolTipText = "Zeigt eine Auswahl an\r\nInformationen über das GIDM an.";
-            // 
-            // aktualisiereToolStripMenuItem
-            // 
-            this.aktualisiereToolStripMenuItem.Name = "aktualisiereToolStripMenuItem";
-            this.aktualisiereToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.aktualisiereToolStripMenuItem.Text = "Aktualisiere";
-            this.aktualisiereToolStripMenuItem.ToolTipText = "Aktualisiert die Anzeige.";
-            this.aktualisiereToolStripMenuItem.Click += new System.EventHandler(this.aktualisiereToolStripMenuItem_Click);
-            // 
-            // toolStripTextBoxGIDMHR
-            // 
-            this.toolStripTextBoxGIDMHR.Name = "toolStripTextBoxGIDMHR";
-            this.toolStripTextBoxGIDMHR.ReadOnly = true;
-            this.toolStripTextBoxGIDMHR.Size = new System.Drawing.Size(100, 23);
-            // 
-            // toolStripTextBoxGIDMGrp
-            // 
-            this.toolStripTextBoxGIDMGrp.Name = "toolStripTextBoxGIDMGrp";
-            this.toolStripTextBoxGIDMGrp.ReadOnly = true;
-            this.toolStripTextBoxGIDMGrp.Size = new System.Drawing.Size(100, 23);
-            // 
-            // toolStripTextBoxGIDMCount
-            // 
-            this.toolStripTextBoxGIDMCount.Name = "toolStripTextBoxGIDMCount";
-            this.toolStripTextBoxGIDMCount.ReadOnly = true;
-            this.toolStripTextBoxGIDMCount.Size = new System.Drawing.Size(100, 23);
-            // 
             // beendenToolStripMenuItem
             // 
             this.beendenToolStripMenuItem.Name = "beendenToolStripMenuItem";
-            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.beendenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.beendenToolStripMenuItem.Text = "Beenden";
             this.beendenToolStripMenuItem.Click += new System.EventHandler(this.beendenToolStripMenuItem_Click);
             // 
@@ -176,13 +115,13 @@
             this.basistypenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.öffneEditorToolStripMenuItem});
             this.basistypenToolStripMenuItem.Name = "basistypenToolStripMenuItem";
-            this.basistypenToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.basistypenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.basistypenToolStripMenuItem.Text = "Basistypen";
             // 
             // öffneEditorToolStripMenuItem
             // 
             this.öffneEditorToolStripMenuItem.Name = "öffneEditorToolStripMenuItem";
-            this.öffneEditorToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.öffneEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.öffneEditorToolStripMenuItem.Text = "Öffne Editor";
             // 
             // label1
@@ -335,13 +274,6 @@
         private System.Windows.Forms.ToolStripMenuItem universumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neuladenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem beendenToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gIDMToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zeigeEditorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zeigeStatusToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxGIDMGrp;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxGIDMHR;
-        private System.Windows.Forms.ToolStripMenuItem aktualisiereToolStripMenuItem;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxGIDMCount;
         private System.Windows.Forms.ToolStripMenuItem inhalteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem basistypenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem öffneEditorToolStripMenuItem;
