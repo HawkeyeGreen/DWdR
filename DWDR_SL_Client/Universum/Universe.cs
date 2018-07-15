@@ -5,9 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using DWDR_SL_Client.Organization;
+using DWDR_SL_Client.Universum.EffectSystem;
 
 namespace DWDR_SL_Client.Universum
 {
+    /// <summary>
+    /// IMPORTANT TODO: planes implementieren, um eine gute Kapselung von Objekten auf den verschiedenen
+    /// Dimensionsebenen zu erreichen (!)
+    /// </summary>
+
+
     class Universe
     {
         // SINGLETON IMPLEMENTATION //
@@ -29,6 +36,10 @@ namespace DWDR_SL_Client.Universum
         List<string> sunsystemPaths     = new List<string>();
         List<string> sunPaths           = new List<string>();
         List<string> planetPaths        = new List<string>();
+
+
+        // Universe-wide effectSystem
+        EffectManager effectManagement;
 
         private Universe(string workingPath)
         {

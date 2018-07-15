@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Organization\ConditionSystem.cs" />
     <Compile Include="Organization\Global_ID_Management.cs" />
+    <Compile Include="Organization\Round.cs" />
     <Compile Include="Organization\MappedObject.cs" />
     <Compile Include="Organization\StringedReference.cs" />
     <Compile Include="Organization\Temperature.cs" />
@@ -67,6 +68,8 @@
     <Compile Include="Universum\Ecosystem\Ecosystem.cs" />
     <Compile Include="Universum\Ecosystem\Lifeform.cs" />
     <Compile Include="Universum\EffectSystem\Effect.cs" />
+    <Compile Include="Universum\EffectSystem\EffectDeployKit.cs" />
+    <Compile Include="Universum\EffectSystem\EffectManager.cs" />
     <Compile Include="Universum\EffectSystem\ModifierEnvelope.cs" />
     <Compile Include="Universum\ManagementSystems\BaseTypeManagement.cs" />
     <Compile Include="Universum\Planet.cs" />

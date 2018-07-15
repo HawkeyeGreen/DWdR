@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using DWDR_SL_Client.Organization;
 using DWDR_SL_Client.Universum.ManagementSystems;
+using DWDR_SL_Client.Universum.EffectSystem;
 using DWDR_SL_Client.Universum.Planets;
 
 namespace DWDR_SL_Client.Universum
@@ -14,7 +15,8 @@ namespace DWDR_SL_Client.Universum
     {
         private string myPath;
 
-        private string systematic_name = "TBD";
+        public EffectManager effectManagement;
+        public string systematic_name;
         public string named;
         public string claimed_by;
         private string plane = "main";

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DWDR_SL_Client.Universum;
+using System.IO;
 
 namespace DWDR_SL_Client.Organization
 {
@@ -25,6 +26,7 @@ namespace DWDR_SL_Client.Organization
      * ob EINE der Bedingungen zu trifft.
      * 
      */
+
     class ConditionContainer
     {
         public List<ConditionSegment> segments = new List<ConditionSegment>();
@@ -48,6 +50,14 @@ namespace DWDR_SL_Client.Organization
             {
                 return checkSegment(segmentsToCheck.GetRange(1, segmentsToCheck.Count - 1), possibleSpaceObjectTarget);
             }
+        }
+
+        public ConditionContainer load(String targetPath)
+        {
+            StreamReader reader = new StreamReader(File.OpenRead(targetPath + "condition_container.cc"));
+            if(reader.ReadLine().Contains("def Segment")) { segments.Add(ConditionSegment.parseSegment(reader)); }
+            reader.Close();
+            return this;
         }
     }
 
@@ -201,6 +211,14 @@ namespace DWDR_SL_Client.Organization
                 return false;
             }
         }
+
+        public static Condition parseCondition(StreamReader reader)
+        {
+            Condition condition = new Condition();
+
+
+            return condition;
+        }
     }
 
     class ConditionSegment
@@ -236,6 +254,25 @@ namespace DWDR_SL_Client.Organization
             {
                 return false;
             }
+        }
+
+        public static ConditionSegment parseSegment(StreamReader reader)
+        {
+            ConditionSegment segment = new ConditionSegment();
+            bool reading = true;
+            while(reading)
+            {
+                string line = reader.ReadLine();
+                if (line.Contains("def Condition"))
+                {
+                    segment.conditions.Add(Condition.parseCondition(reader));
+                }
+                else if(line.Contains("end Segment"))
+                {
+                    reading = false;
+                }
+            }
+            return segment;
         }
     }
 }

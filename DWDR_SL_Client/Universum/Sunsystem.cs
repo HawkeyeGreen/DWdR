@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using DWDR_SL_Client.Organization;
 using System.IO;
 using DWDR_SL_Client.Universum.ManagementSystems;
+using DWDR_SL_Client.Universum.EffectSystem;
 
 namespace DWDR_SL_Client.Universum
 {
     /**********************Konzept**********************
      * Sonnensysteme sind eine höhere Zoomstufe im Universum.
      * In ihnen wird alles von der/ den Sonnen aus benannt.
-     * 
      ***************************************************/
     class Sunsystem : MappedObject, ISpaceObject
     {
@@ -34,6 +34,9 @@ namespace DWDR_SL_Client.Universum
         List<ISpaceObject> wanderingObjectList = new List<ISpaceObject>();
         List<List<ISpaceObject>> asteroidBeltObjects = new List<List<ISpaceObject>>();
         #endregion
+
+
+        EffectManager effectManagement;
 
         #region Eigenschaften
         public Vector3D Position
