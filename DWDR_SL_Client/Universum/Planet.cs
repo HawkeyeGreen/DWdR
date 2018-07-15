@@ -8,6 +8,7 @@ using DWDR_SL_Client.Organization;
 using DWDR_SL_Client.Universum.ManagementSystems;
 using DWDR_SL_Client.Universum.EffectSystem;
 using DWDR_SL_Client.Universum.Planets;
+using DWDR_SL_Client.Universum.Ressources;
 
 namespace DWDR_SL_Client.Universum
 {
@@ -40,6 +41,8 @@ namespace DWDR_SL_Client.Universum
         public bool inhabited;
 
         List<string> communities = new List<string>();
+
+        private List<Deposit> groundDeposits;
 
         public Vector3D Position { get => position; set => position = value; }
         public string Plane { get => plane; set => plane = value; }

@@ -8,13 +8,12 @@ using System.IO;
 namespace DWDR_SL_Client.Universum.ManagementSystems
 {
     /* 
-     * Das GenerationProfileManagement behält Listen mit allen Profilen für die Erstellung von:
-     * 1. Sonnen
-     * 2. Planeten
-     * 3. Asteroiden
-     * 4. Scherbenwelt-Inseln
-     * 5. Orokin-Türmen
-     * 
+     * Das GenerationProfileManagement stellt Listen mit allen Profilen für die Erstellung von:
+     *  1. Sonnen
+     *  2. Planeten
+     *  3. Asteroiden
+     *  4. Scherbenwelt-Inseln
+     *  5. Orokin-Türmen
      * bereit.
      * 
      * Die Profile enthalten alle Informationen, die ein entsprechendes Objekt benötigt, um sich selbst
