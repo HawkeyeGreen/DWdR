@@ -58,7 +58,9 @@
     </Compile>
     <Compile Include="Organization\ConditionSystem.cs" />
     <Compile Include="Organization\Global_ID_Management.cs" />
+    <Compile Include="Organization\MappedObject.cs" />
     <Compile Include="Organization\StringedReference.cs" />
+    <Compile Include="Organization\Temperature.cs" />
     <Compile Include="Organization\Vector3D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +70,9 @@
     <Compile Include="Universum\EffectSystem\ModifierEnvelope.cs" />
     <Compile Include="Universum\ManagementSystems\BaseTypeManagement.cs" />
     <Compile Include="Universum\Planet.cs" />
+    <Compile Include="Universum\Planets\Climate.cs" />
+    <Compile Include="Universum\Planets\Region.cs" />
+    <Compile Include="Universum\Planets\Relief.cs" />
     <Compile Include="Universum\Ressources\Deposit.cs" />
     <Compile Include="Universum\Ressources\Ressource.cs" />
     <Compile Include="Universum\Ressources\Yield.cs" />
@@ -103,7 +108,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\The Vault\Zeus\Zeus.csproj">
+      <Project>{068e5f04-d5ec-4daa-a8fa-46fed3f2b708}</Project>
+      <Name>Zeus</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Txt Dokumente\Sonnen.txt" />
     <Content Include="Txt Dokumente\Variable Flüssigkeiten- Chemosphären.txt" />

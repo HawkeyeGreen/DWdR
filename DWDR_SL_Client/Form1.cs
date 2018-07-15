@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using DWDR_SL_Client.Organization;
 using DWDR_SL_Client.Universum;
 using DWDR_SL_Client.Universum.EffectSystem;
+using Zeus.Hermes;
 
 namespace DWDR_SL_Client
 {
@@ -17,8 +18,8 @@ namespace DWDR_SL_Client
     {
         // Klassen initialisieren //
         Universe universe;
-        Global_ID_Management GIDM = new Global_ID_Management();
-        List<Spaceobject> spaceObjects = new List<Spaceobject>();
+        //Global_ID_Management GIDM = Global_ID_Management.getInstance();
+        List<ISpaceObject> spaceObjects = new List<ISpaceObject>();
 
         public Form1()
         {
@@ -27,37 +28,27 @@ namespace DWDR_SL_Client
 
         private void neuladenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            universe = new Universe(AppDomain.CurrentDomain.BaseDirectory);
+            universe = Universe.getInstance(AppDomain.CurrentDomain.BaseDirectory);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            universe = new Universe(AppDomain.CurrentDomain.BaseDirectory);
+            universe = Universe.getInstance(AppDomain.CurrentDomain.BaseDirectory);
             spaceObjects = universe.getAnySpaceObjectInRadiusAround(new Vector3D(), 1.0f);
-            actualizetollStripInfoGIDM();
+            Planet planet = new Planet();
+            //actualizetollStripInfoGIDM();
         }
 
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GIDM.saveIDDatabank();
+            //GIDM.saveIDDatabank();
+            Hermes.getInstance().shutdownHermes();
             this.Close();
         }
 
         private void aktualisiereToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            actualizetollStripInfoGIDM();
-        }
-
-        void actualizetollStripInfoGIDM()
-        {
-            toolStripTextBoxGIDMGrp.Text = "Anzahl: Gruppen";
-            toolStripTextBoxGIDMGrp.ToolTipText = Convert.ToString(GIDM.getGrpCount());
-
-            toolStripTextBoxGIDMHR.Text = "Höchste Stelle";
-            toolStripTextBoxGIDMHR.ToolTipText = Convert.ToString(GIDM.highestRange);
-
-            toolStripTextBoxGIDMCount.Text = "Anzahl: Einträge";
-            toolStripTextBoxGIDMCount.ToolTipText = Convert.ToString(GIDM.getEntryCount());
+            //actualizetollStripInfoGIDM();
         }
 
         private void button1_Click(object sender, EventArgs e)

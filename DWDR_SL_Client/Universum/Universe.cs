@@ -10,6 +10,9 @@ namespace DWDR_SL_Client.Universum
 {
     class Universe
     {
+        // SINGLETON IMPLEMENTATION //
+        private static Universe instance;
+
         // Globale System Variablen //
         string workingDirectory;
 
@@ -18,16 +21,16 @@ namespace DWDR_SL_Client.Universum
         List<Galaxy> galaxies           = new List<Galaxy>();
 
         // Referenzen auf Raumobjekte
-        List<Spaceobject> wanderingSpaceObjects  = new List<Spaceobject>();
-        List<Spaceobject> sunsystems = new List<Spaceobject>();
-        List<Spaceobject> roamingSuns = new List<Spaceobject>();
-        List<Spaceobject> roamingPlanets = new List<Spaceobject>();
+        List<ISpaceObject> wanderingSpaceObjects  = new List<ISpaceObject>();
+        List<ISpaceObject> sunsystems = new List<ISpaceObject>();
+        List<ISpaceObject> roamingSuns = new List<ISpaceObject>();
+        List<ISpaceObject> roamingPlanets = new List<ISpaceObject>();
 
         List<string> sunsystemPaths     = new List<string>();
         List<string> sunPaths           = new List<string>();
         List<string> planetPaths        = new List<string>();
 
-        public Universe(string workingPath)
+        private Universe(string workingPath)
         {
             workingDirectory = workingPath;
             #region Check if all necessary files and folders exists
@@ -89,10 +92,10 @@ namespace DWDR_SL_Client.Universum
             {
                 string path = Convert.ToString(reader.ReadLine());
                 Sunsystem tmp = new Sunsystem();
-                Spaceobject spaceObj = tmp.thatsMe(path);
+                tmp.loadMe(path);
 
                 sunsystemPaths.Add(path);
-                sunsystems.Add(spaceObj);
+                sunsystems.Add(tmp);
             }
             reader.Close();
             #endregion
@@ -114,13 +117,27 @@ namespace DWDR_SL_Client.Universum
             {
                 planetPaths.Add(Convert.ToString(reader.ReadLine()));
                 Planet planet = new Planet().loadMe(planetPaths[i]);
-                Spaceobject tmp = new Spaceobject(planet.position, "planet", planet.ID, planet.systematic_name, new List<string>(), planetPaths[i]);
-                roamingPlanets.Add(tmp);
+                //Spaceobject tmp = new Spaceobject(planet.position, "planet", planet.id, planet.systematic_name, new List<string>(), planetPaths[i]);
+                roamingPlanets.Add(planet);
                 
             }
             reader.Close();
             #endregion
             #endregion
+        }
+
+        public static Universe getInstance(string workingPath)
+        {
+            if(instance == null)
+            {
+                Universe.instance = new Universe(workingPath);
+            }
+            return instance;
+        }
+
+        public void reinitialize(string workingPath)
+        {
+
         }
 
         public Galaxy getGalaxyByID(int ID)
@@ -153,13 +170,13 @@ namespace DWDR_SL_Client.Universum
             }
         }
 
-        public List<Spaceobject> getSpaceObjectsByPosition(List<Spaceobject> spaceObjects,Vector3D checkPosition, float radius)
+        public List<ISpaceObject> getSpaceObjectsByPosition(List<ISpaceObject> spaceObjects,Vector3D checkPosition, float radius)
         {
-            List<Spaceobject> Return = new List<Spaceobject>();
+            List<ISpaceObject> Return = new List<ISpaceObject>();
 
-            foreach (Spaceobject spaceObject in spaceObjects)
+            foreach (ISpaceObject spaceObject in spaceObjects)
             {
-                float distance = spaceObject.position.createVectorBetween(checkPosition).length();
+                float distance = spaceObject.Position.createVectorBetween(checkPosition).length();
                 if (distance <= radius)
                 {
                     Return.Add(spaceObject);
@@ -169,9 +186,9 @@ namespace DWDR_SL_Client.Universum
             return Return;
         }
 
-        public List<Spaceobject> getAnySpaceObjectInRadiusAround(Vector3D checkPosition, float radius)
+        public List<ISpaceObject> getAnySpaceObjectInRadiusAround(Vector3D checkPosition, float radius)
         {
-            List<Spaceobject> Return = getSpaceObjectsByPosition(wanderingSpaceObjects, checkPosition, radius);
+            List<ISpaceObject> Return = getSpaceObjectsByPosition(wanderingSpaceObjects, checkPosition, radius);
             Return.AddRange(getSpaceObjectsByPosition(sunsystems, checkPosition, radius));
             Return.AddRange(getSpaceObjectsByPosition(roamingSuns, checkPosition, radius));
             Return.AddRange(getSpaceObjectsByPosition(roamingPlanets, checkPosition, radius));
@@ -204,10 +221,15 @@ namespace DWDR_SL_Client.Universum
         }
     }
 
-    class Galaxy
+    class Galaxy : MappedObject
     {
         public string name = "Auriga";
         public Vector3D position = new Vector3D();
         public float radius = 10;
+
+        public Galaxy() : base("Galaxy")
+        {
+
+        }
     }
 }

@@ -14,6 +14,7 @@ using DWDR_SL_Client.Organization;
 
 namespace DWDR_SL_Client.Universum
 {
+    // Veraltet
     class Spaceobject
     {
         public Vector3D position;
@@ -36,5 +37,44 @@ namespace DWDR_SL_Client.Universum
 
         public string getType() { return type; }
         public string getPath() { return path; }
+    }
+
+    // Als Interface bedeutend besser ^-^
+    interface ISpaceObject
+    {
+        // Muss Vektor für Position enthalten
+        // Muss Pfad zum "echten" Objekt enthalten
+        // Muss einen type haben
+        // Muss einer plane zu geordnet sein
+        
+        Vector3D Position
+        {
+            get;
+            set;
+        }
+
+        string Plane
+        {
+            get;
+            set;
+        }
+
+        string Type
+        {
+            get;
+            set;
+        }
+
+        string Path
+        {
+            get;
+            set;
+        }
+
+        long ID
+        {
+            get;
+            set;
+        }
     }
 }
