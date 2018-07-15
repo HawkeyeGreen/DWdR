@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWDR_SL_Client", "DWDR_SL_Client\DWDR_SL_Client.csproj", "{5AC846AE-21AB-4BE7-99D1-0026260C3394}"
+	ProjectSection(ProjectDependencies) = postProject
+		{068E5F04-D5EC-4DAA-A8FA-46FED3F2B708} = {068E5F04-D5EC-4DAA-A8FA-46FED3F2B708}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zeus", "..\The Vault\Zeus\Zeus.csproj", "{068E5F04-D5EC-4DAA-A8FA-46FED3F2B708}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +20,15 @@ Global
 		{5AC846AE-21AB-4BE7-99D1-0026260C3394}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AC846AE-21AB-4BE7-99D1-0026260C3394}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AC846AE-21AB-4BE7-99D1-0026260C3394}.Release|Any CPU.Build.0 = Release|Any CPU
+		{068E5F04-D5EC-4DAA-A8FA-46FED3F2B708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{068E5F04-D5EC-4DAA-A8FA-46FED3F2B708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{068E5F04-D5EC-4DAA-A8FA-46FED3F2B708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{068E5F04-D5EC-4DAA-A8FA-46FED3F2B708}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EB6E46B-3522-422A-91E7-8953E153B417}
 	EndGlobalSection
 EndGlobal

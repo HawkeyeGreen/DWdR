@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="Organization\ConditionSystem.cs" />
     <Compile Include="Organization\Global_ID_Management.cs" />
+    <Compile Include="Organization\MappedObject.cs" />
     <Compile Include="Organization\StringedReference.cs" />
     <Compile Include="Organization\Temperature.cs" />
     <Compile Include="Organization\Vector3D.cs" />
@@ -107,7 +108,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\The Vault\Zeus\Zeus.csproj">
+      <Project>{068e5f04-d5ec-4daa-a8fa-46fed3f2b708}</Project>
+      <Name>Zeus</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Txt Dokumente\Sonnen.txt" />
     <Content Include="Txt Dokumente\Variable Flüssigkeiten- Chemosphären.txt" />

@@ -7,6 +7,9 @@ using System.IO;
 
 namespace DWDR_SL_Client.Organization
 {
+
+    // VERALTET!
+    /*
     class Global_ID_Management
     {
 
@@ -402,4 +405,8 @@ namespace DWDR_SL_Client.Organization
         public string type = "none";
         public bool amIActive = true;
     }
+}
+
+    */
+
 }

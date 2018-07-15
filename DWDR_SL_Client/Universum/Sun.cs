@@ -9,7 +9,7 @@ using DWDR_SL_Client.Universum.Ressources;
 
 namespace DWDR_SL_Client.Universum
 {
-    class Sun : ISpaceObject
+    class Sun : MappedObject, ISpaceObject
     {
         private long id = -1;
         private string myPath;
@@ -104,9 +104,13 @@ namespace DWDR_SL_Client.Universum
         }
         #endregion
 
-        public void createMe(int suntype, string systematicName, string PathForFile, Global_ID_Management GIDM, Random rnd)
+        public Sun() : base("Sun")
         {
-            ID = GIDM.insertEntry("sun").id;
+
+        }
+
+        public void createMe(int suntype, string systematicName, string PathForFile,  Random rnd)
+        {
             Path = PathForFile;
 
             this.suntype = suntype;

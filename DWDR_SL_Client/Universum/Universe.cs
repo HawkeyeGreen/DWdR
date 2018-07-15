@@ -221,10 +221,15 @@ namespace DWDR_SL_Client.Universum
         }
     }
 
-    class Galaxy
+    class Galaxy : MappedObject
     {
         public string name = "Auriga";
         public Vector3D position = new Vector3D();
         public float radius = 10;
+
+        public Galaxy() : base("Galaxy")
+        {
+
+        }
     }
 }

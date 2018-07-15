@@ -10,10 +10,9 @@ using DWDR_SL_Client.Universum.Planets;
 
 namespace DWDR_SL_Client.Universum
 {
-    class Planet : ISpaceObject
+    class Planet : MappedObject, ISpaceObject
     {
         private string myPath;
-        private long id;
 
         private string systematic_name = "TBD";
         public string named;
@@ -44,12 +43,17 @@ namespace DWDR_SL_Client.Universum
         public string Plane { get => plane; set => plane = value; }
         public string Type { get => type; set => type = value; }
         public string Path { get => myPath; set => myPath = value; }
-        public long ID { get => id; set => id = value; }
+        public long ID { get => base.ID; set => base.ID = value; }
 
         public string Systematic_name { get => systematic_name; set => systematic_name = value; }
         public float Radius { get => radius; set => radius = value; }
 
-        public Planet createMe(string pathForDirectory, float radius, Vector3D position, string systematicName, long ID, Global_ID_Management GIDM, Sunsystem sunsystem, List<PlanetGenerationProfile> allowedProfiles)
+        public Planet() : base("Planet")
+        {
+            
+        }
+
+        public Planet createMe(string pathForDirectory, float radius, Vector3D position, string systematicName, long ID, Sunsystem sunsystem, List<PlanetGenerationProfile> allowedProfiles)
         {
             this.radius = radius;
             this.position = position;

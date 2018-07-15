@@ -14,7 +14,7 @@ namespace DWDR_SL_Client.Universum
      * In ihnen wird alles von der/ den Sonnen aus benannt.
      * 
      ***************************************************/
-    class Sunsystem : ISpaceObject
+    class Sunsystem : MappedObject, ISpaceObject
     {
         #region Fields
         private string myDirectory;
@@ -120,13 +120,17 @@ namespace DWDR_SL_Client.Universum
         }
         #endregion
 
+        public Sunsystem() : base("Sunystem")
+        {
+
+        }
 
         // Die createMe-Funktion erstellt aus den Parametern, die vom Universums-Konstruktor kommen,
         // die Inhalte des Sonnensystems.
         // Diese Funktion erzeugt ein 'normales' Sonnensystem.
         // Für spezielle Sonnensysteme gibt es einen entsprechenden Modus,
         // ebenso für mehrfach Systeme.
-        public void createMe(string pathForDirectory,int suns, int planets, float radius, Vector3D position, string systematicName, int createWanderingObjects, long ID, Global_ID_Management GIDM, Universe universe)
+        public void createMe(string pathForDirectory,int suns, int planets, float radius, Vector3D position, string systematicName, int createWanderingObjects, long ID, Universe universe)
         {
             // Initialisiere erst einmal dich selbst ^-^
             this.ID = ID;
@@ -151,7 +155,7 @@ namespace DWDR_SL_Client.Universum
             for (int i = 0; i < suns; i++)
             {
                 Sun newSun = new Sun();
-                newSun.createMe(possibleSunstypes[rnd.Next(0, possibleSunstypes.Count)], systematic_Name + "-" + Convert.ToString(i), pathForDirectory + "/s" + Convert.ToString(i) + ".s", GIDM, rnd);
+                newSun.createMe(possibleSunstypes[rnd.Next(0, possibleSunstypes.Count)], systematic_Name + "-" + Convert.ToString(i), pathForDirectory + "/s" + Convert.ToString(i) + ".s", rnd);
                 sunList.Add(newSun);
             }
 
