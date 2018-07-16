@@ -36,7 +36,7 @@ namespace DWDR_SL_Client.Universum
         #endregion
 
 
-        EffectManager effectManagement;
+        //EffectManager effectManagement;
 
         #region Eigenschaften
         public Vector3D Position

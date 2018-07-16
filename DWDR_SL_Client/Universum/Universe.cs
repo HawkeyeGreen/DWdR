@@ -39,7 +39,7 @@ namespace DWDR_SL_Client.Universum
 
 
         // Universe-wide effectSystem
-        EffectManager effectManagement;
+        // EffectManager effectManagement;
 
         private Universe(string workingPath)
         {

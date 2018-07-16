@@ -13,8 +13,8 @@ namespace DWDR_SL_Client.Universum.EffectSystem
      * zu generieren.
 
      */
-    public class EffectDeployKit
-    {
+    //public class EffectDeployKit
+    //{
 
-    }
+    //}
 }

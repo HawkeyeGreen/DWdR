@@ -67,10 +67,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Universum\Ecosystem\Ecosystem.cs" />
     <Compile Include="Universum\Ecosystem\Lifeform.cs" />
-    <Compile Include="Universum\EffectSystem\Effect.cs" />
-    <Compile Include="Universum\EffectSystem\EffectDeployKit.cs" />
-    <Compile Include="Universum\EffectSystem\EffectManager.cs" />
-    <Compile Include="Universum\EffectSystem\ModifierEnvelope.cs" />
+    <Compile Include="Universum\EffectSystem\Old\Effect.cs" />
+    <Compile Include="Universum\EffectSystem\Old\EffectDeployKit.cs" />
+    <Compile Include="Universum\EffectSystem\Old\EffectManager.cs" />
+    <Compile Include="Universum\EffectSystem\Old\ModifierEnvelope.cs" />
     <Compile Include="Universum\ManagementSystems\BaseTypeManagement.cs" />
     <Compile Include="Universum\Planet.cs" />
     <Compile Include="Universum\Planets\Climate.cs" />
