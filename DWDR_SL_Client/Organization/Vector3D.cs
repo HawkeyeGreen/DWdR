@@ -74,5 +74,14 @@ namespace DWDR_SL_Client.Organization
             y += vector.y;
             z += vector.z;
         }
+
+        public static Vector3D operator + (Vector3D vec0, Vector3D vec1)
+        {
+            Vector3D solution = new Vector3D();
+            solution.addVector(vec0);
+            solution.addVector(vec1);
+
+            return solution;
+        }
     }
 }
