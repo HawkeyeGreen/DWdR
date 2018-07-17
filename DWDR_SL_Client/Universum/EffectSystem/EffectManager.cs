@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace DWDR_SL_Client.Universum.EffectSystem
 {
-    interface IEffectable
+    class EffectManager
     {
-        EffectManager EffectManager { get; }
-        List<string> Resistances { get; }
-        List<string> Affectable { get; }
-        string Type { get; }
+        List<AbstractEffect> effects;
+        Dictionary<string, List<Modifiers.AbstractModifier>> modifiers;
     }
 }

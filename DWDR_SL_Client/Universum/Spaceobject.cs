@@ -50,8 +50,7 @@ namespace DWDR_SL_Client.Universum
         private string path;
         private string planeOfExistence;
 
-        private List<IEffectable> parents;
-        private List<IEffectable> children;
+        private EffectManager effectManager;
 
         private List<string> resistances;
         private List<string> affectable;
@@ -61,9 +60,7 @@ namespace DWDR_SL_Client.Universum
         public Vector3D Position { get => position; set => position = value; }
         public string Plane { get => planeOfExistence; set => planeOfExistence = value; }
         public string Path { get => path; set => path = value; }
-
-        public List<IEffectable> Parents => parents;
-        public List<IEffectable> Children => children;
+        public EffectManager EffectManager { get; }
         public List<string> Resistances => resistances;
         public List<string> Affectable => affectable;
         public string Type { get => MappedType; set => MappedType = value; }
@@ -77,8 +74,7 @@ namespace DWDR_SL_Client.Universum
             trajectory = new Vector3D();
             planeOfExistence = "main";
 
-            parents = new List<IEffectable>();
-            children = new List<IEffectable>();
+            effectManager = new EffectManager();
 
             resistances = new List<string>();
             affectable = new List<string>();
