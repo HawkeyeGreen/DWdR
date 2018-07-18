@@ -8,8 +8,9 @@ namespace DWDR_SL_Client.Universum.EffectSystem
 {
     class EffectManager
     {
-        List<AbstractEffect> effects;
-        Dictionary<string, List<List<Modifiers.AbstractModifier>>> modifiers;
+        private List<EffectDeployer.AbstractEffecDeployer> deployer;
+        private List<Effects.AbstractEffect> effects;
+        private Dictionary<string, List<List<Modifiers.AbstractModifier>>> modifiers;
 
         public double getModifiedValue(string key, double baseValue)
         {
@@ -40,6 +41,16 @@ namespace DWDR_SL_Client.Universum.EffectSystem
                 return final;
             }
             return baseValue;
+        }
+
+        public void addDeployer(EffectDeployer.AbstractEffecDeployer deployer)
+        {
+
+        }
+
+        public void applyEffect(Effects.AbstractEffect effect)
+        {
+
         }
     }
 }

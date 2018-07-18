@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DWDR_SL_Client.Organization;
 
-namespace DWDR_SL_Client.Universum.EffectSystem
+namespace DWDR_SL_Client.Universum.EffectSystem.Effects
 {
     abstract class AbstractEffect : MappedObject
     {
