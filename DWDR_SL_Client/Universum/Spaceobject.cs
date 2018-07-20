@@ -44,6 +44,8 @@ namespace DWDR_SL_Client.Universum
 
     abstract class GenericSpaceObject : MappedObject, ISpaceObject, IEffectable
     {
+        private IEffectable parent;
+
         private Vector3D position;
         private Vector3D trajectory;
 
@@ -64,6 +66,7 @@ namespace DWDR_SL_Client.Universum
         public List<string> Resistances => resistances;
         public List<string> Affectable => affectable;
         public string Type { get => MappedType; set => MappedType = value; }
+        public IEffectable Parent { get => parent; set => parent = value; }
         #endregion
 
         public GenericSpaceObject(string myType, Vector3D position, string path) : base(myType)
@@ -74,7 +77,7 @@ namespace DWDR_SL_Client.Universum
             trajectory = new Vector3D();
             planeOfExistence = "main";
 
-            effectManager = new EffectManager();
+            effectManager = new EffectManager(this);
 
             resistances = new List<string>();
             affectable = new List<string>();
@@ -85,6 +88,10 @@ namespace DWDR_SL_Client.Universum
         {
             position += trajectory;
         }
+
+        public abstract List<IEffectable> getAllEffectables();
+        public abstract List<IEffectable> getEffectablesByKey(string affectionKey);
+        public abstract List<IEffectable> getEffectablesByKeyTable(Tuple<List<string>, List<string>> table);
     }
 
     interface ISpaceObject
