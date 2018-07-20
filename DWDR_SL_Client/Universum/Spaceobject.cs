@@ -80,8 +80,10 @@ namespace DWDR_SL_Client.Universum
             effectManager = new EffectManager(this);
 
             resistances = new List<string>();
-            affectable = new List<string>();
-            affectable.Add("GameMaster");
+            affectable = new List<string>
+            {
+                "GameMaster"
+            };
         }
 
         public void Move()

@@ -68,5 +68,16 @@ namespace DWDR_SL_Client.Organization
             currentInterstellarYear++;
             return currentRound;
         }
+
+        public static void read()
+        {
+
+        }
+
+        public static void save()
+        {
+
+        }
+
     }
 }

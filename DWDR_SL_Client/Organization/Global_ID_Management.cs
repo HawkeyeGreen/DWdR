@@ -409,4 +409,8 @@ namespace DWDR_SL_Client.Organization
 
     */
 
+    class GIDM
+    {
+
+    }
 }

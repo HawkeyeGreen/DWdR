@@ -10,12 +10,15 @@ namespace DWDR_SL_Client.Universum.EffectSystem
     {
         IEffectable master;
 
-        private List<EffectDeployer.AbstractEffecDeployer> deployer;
-        private List<Effects.AbstractEffect> effects;
+        private List<Effects.AbstractEffect> ownedEffects;
+        private List<Effects.AbstractEffect> affectedEffects;
         private Dictionary<string, List<List<Modifiers.AbstractModifier>>> modifiers;
 
         public EffectManager(IEffectable master)
         {
+            ownedEffects = new List<Effects.AbstractEffect>();
+            affectedEffects = new List<Effects.AbstractEffect>();
+            modifiers = new Dictionary<string, List<List<Modifiers.AbstractModifier>>>();
             this.master = master;
         }
 
@@ -50,7 +53,7 @@ namespace DWDR_SL_Client.Universum.EffectSystem
             return baseValue;
         }
 
-        public void addDeployer(EffectDeployer.AbstractEffecDeployer deployer)
+        public void addDeployer(Effects.AbstractEffect deployer)
         {
 
         }
