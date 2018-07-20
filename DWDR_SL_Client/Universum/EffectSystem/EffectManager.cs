@@ -8,9 +8,16 @@ namespace DWDR_SL_Client.Universum.EffectSystem
 {
     class EffectManager
     {
+        IEffectable master;
+
         private List<EffectDeployer.AbstractEffecDeployer> deployer;
         private List<Effects.AbstractEffect> effects;
         private Dictionary<string, List<List<Modifiers.AbstractModifier>>> modifiers;
+
+        public EffectManager(IEffectable master)
+        {
+            this.master = master;
+        }
 
         public double getModifiedValue(string key, double baseValue)
         {

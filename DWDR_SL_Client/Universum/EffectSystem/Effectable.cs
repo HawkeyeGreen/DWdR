@@ -12,5 +12,10 @@ namespace DWDR_SL_Client.Universum.EffectSystem
         List<string> Resistances { get; }
         List<string> Affectable { get; }
         string Type { get; }
+        IEffectable parent { get; }
+
+        List<IEffectable> getAllEffectables();
+        List<IEffectable> getEffectablesByKey(string affectionKey);
+        List<IEffectable> getEffectablesByKeyTable(Tuple<List<string>,List<string>> table);
     }
 }
