@@ -13,19 +13,25 @@ namespace DWDR_SL_Client.Organization
 
         private string mainType;
         private long id;
-        private static long nextID = 0;
+        private static long nextID = long.MinValue +1;
 
         public long ID { get => id; set => id = value; }
         public string MappedType { get => mainType; set => mainType = value; }
 
         public string Type => MappedType;
 
-        public MappedObject(string myType)
+        public MappedObject(string myType, long id = long.MinValue)
         {
             mainType = myType;
-            id = nextID;
-            nextID++;
-
+            if(id == long.MinValue)
+            {
+                ID = GIDM.getInstance().register(this);
+            }
+            else
+            {
+                ID = id;
+                GIDM.getInstance().login(ID, this);
+            }
             Hermes.getInstance().log(this, MappedType + " has been created.");
         }
     }

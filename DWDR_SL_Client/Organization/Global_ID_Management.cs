@@ -411,6 +411,97 @@ namespace DWDR_SL_Client.Organization
 
     class GIDM
     {
+        private static GIDM instance = null;
 
+        private Dictionary<long, Tuple<MappedObject, string>> idStorage;
+        private Queue<long> freedIDs;
+        private long highestID;
+
+        private static Object mutexLock = new Object();
+        private static Object freedLock = new Object();
+
+        private GIDM()
+        {
+            idStorage = new Dictionary<long, Tuple<MappedObject, string>>();
+            freedIDs = new Queue<long>();
+            idStorage.Add(long.MinValue, new Tuple<MappedObject, string>(null, "System-reservierte ID"));
+            highestID = long.MinValue;
+        }
+
+        public static GIDM getInstance()
+        {
+            if(instance == null)
+            {
+                lock(mutexLock)
+                {
+                    if(instance == null)
+                    {
+                        instance = new GIDM();
+                    }
+                }
+            }
+            return instance;
+        }
+
+        public long register(MappedObject mapped)
+        {
+            lock(freedLock)
+            {
+                if (freedIDs.Count == 0)
+                {
+                    highestID++;
+                    store(highestID, mapped, mapped.MappedType);
+                    return highestID;
+                }
+                else
+                {
+                    long ID = freedIDs.Dequeue();
+                    store(ID, mapped, mapped.MappedType);
+                    return ID;
+                }
+            }
+        }
+
+        public void unregister(long ID)
+        {
+            lock(mutexLock)
+            {
+                if (idStorage.ContainsKey(ID))
+                {
+                    idStorage.Remove(ID);
+                    lock(freedLock)
+                    {
+                        freedIDs.Enqueue(ID);
+                    }
+                }
+            }
+        }
+
+        public void unload(long ID)
+        {
+            lock(mutexLock)
+            {
+                if (idStorage.ContainsKey(ID))
+                {
+                    idStorage[ID] = new Tuple<MappedObject, string>(null, idStorage[ID].Item2);
+                }
+            }
+        }
+
+        public void login(long ID, MappedObject mapped)
+        {
+            lock(mutexLock)
+            {
+                idStorage[ID] = new Tuple<MappedObject, string>(mapped, mapped.Type);
+            }
+        }
+
+        private void store(long ID, MappedObject mapped, string text)
+        {
+            lock(mutexLock)
+            {
+                idStorage.Add(ID, new Tuple<MappedObject, string>(mapped, text));
+            }
+        }
     }
 }
