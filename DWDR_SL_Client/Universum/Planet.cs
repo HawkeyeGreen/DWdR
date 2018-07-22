@@ -28,6 +28,7 @@ namespace DWDR_SL_Client.Universum
         public Vector3D carmal_vec = new Vector3D();
 
         private string type = "planet";
+        private string planetType;
         public int size;
         public int surface;
         public int humidity_level;
@@ -47,6 +48,7 @@ namespace DWDR_SL_Client.Universum
         public Vector3D Position { get => position; set => position = value; }
         public string Plane { get => plane; set => plane = value; }
         public string Type { get => type; set => type = value; }
+        public string PlanetType { get => planetType; set => planetType = value; }
         public string Path { get => myPath; set => myPath = value; }
         public long ID { get => base.ID; set => base.ID = value; }
 

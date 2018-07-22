@@ -9,6 +9,7 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Modifiers
 {
     abstract class AbstractModifier : MappedObject
     {
+
         public AbstractModifier(string ModifierType):base(ModifierType)
         {
 

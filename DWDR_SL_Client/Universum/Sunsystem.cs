@@ -177,11 +177,11 @@ namespace DWDR_SL_Client.Universum
             return this;
         }
 
-        public Spaceobject thatsMe(string myPath)
-        {
-            loadMe(myPath);
-            return new Spaceobject(Position, "sunsystem", ID, systematic_Name, new List<string>(), myDirectory);
-        }
+        //public Spaceobject thatsMe(string myPath)
+        //{
+        //    loadMe(myPath);
+        //    return new Spaceobject(Position, "sunsystem", ID, systematic_Name, new List<string>(), myDirectory);
+        //}
 
         public void saveMe()
         {

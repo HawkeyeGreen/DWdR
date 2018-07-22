@@ -51,15 +51,5 @@ namespace DWDR_SL_Client
             //actualizetollStripInfoGIDM();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Modifier tmp = new Modifier();
-            tmp.mode = Modus.Text;
-            tmp.type = Typ.Text;
-            tmp.value = Convert.ToDouble(Wert.Text);
-            WertAnzeige.Text = Convert.ToString(tmp.value);
-            int vergangeneRunden = Convert.ToInt32(Runden.Text);
-            label5.Text = Convert.ToString(tmp.conglomerateModifier(vergangeneRunden));
-        }
     }
 }
