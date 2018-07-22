@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DWDR_SL_Client.Universum.EffectSystem.Effects
 {
@@ -31,6 +32,26 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Effects
             return targetCondition.isMet();
         }
 
+        public override void load(StreamReader reader)
+        {
+            base.load(reader);
+            Tuple<long, string> _Target = new Tuple<long, string>(Convert.ToInt64(reader.ReadLine()), Convert.ToString(reader.ReadLine()));
+            lastRound = Convert.ToInt32(reader.ReadLine());
+            threshold = Convert.ToInt32(reader.ReadLine());
+            rounds = Convert.ToInt32(reader.ReadLine());
+        }
+
+        public override void save(StreamWriter writer)
+        {
+            writer.WriteLine("TimedEffect");
+            base.save(writer);
+            writer.WriteLine(Convert.ToString(target.ID));
+            writer.WriteLine(Convert.ToString(target.Type));
+            writer.WriteLine(Convert.ToString(lastRound));
+            writer.WriteLine(Convert.ToString(threshold));
+            writer.WriteLine(Convert.ToString(rounds));
+        }
+
         public override bool update()
         {
            if(lastRound < Organization.Round.currentRound)
@@ -44,5 +65,7 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Effects
             }
             return true;
         }
+
+
     }
 }

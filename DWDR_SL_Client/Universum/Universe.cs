@@ -137,7 +137,7 @@ namespace DWDR_SL_Client.Universum
             for (int i = 0; i < count; i++)
             {
                 planetPaths.Add(Convert.ToString(reader.ReadLine()));
-                Planet planet = new Planet().loadMe(planetPaths[i]);
+                Planet planet = new Planet(new Vector3D(), planetPaths[i]).loadMe(planetPaths[i]);
                 //Spaceobject tmp = new Spaceobject(planet.position, "planet", planet.id, planet.systematic_name, new List<string>(), planetPaths[i]);
                 roamingPlanets.Add(planet);
                 
@@ -185,7 +185,7 @@ namespace DWDR_SL_Client.Universum
         {
             foreach(string plt in planetPaths)
             {
-                Planet planet = new Planet();
+                Planet planet = new Planet(new Vector3D(), workingDirectory + plt);
                 planet.loadMe(workingDirectory + plt);
                 planet.update(0);
                 planet.saveMe();

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DWDR_SL_Client.Universum.EffectSystem
 {
@@ -165,6 +164,16 @@ namespace DWDR_SL_Client.Universum.EffectSystem
                     return removeEffectRecursive(ID, index++);
                 }
             }
+        }
+
+        public void save(string basePath)
+        {
+
+        }
+
+        public void load(string basePath)
+        {
+
         }
     }
 }

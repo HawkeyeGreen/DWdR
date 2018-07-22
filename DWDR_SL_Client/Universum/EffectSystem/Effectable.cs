@@ -13,6 +13,7 @@ namespace DWDR_SL_Client.Universum.EffectSystem
         List<string> Affectable { get; }
         string Type { get; }
         IEffectable Parent { get; }
+        long ID { get; set; }
 
         List<IEffectable> getAllEffectables();
         List<IEffectable> getEffectablesByKey(string affectionKey);

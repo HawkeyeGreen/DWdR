@@ -74,6 +74,7 @@
     <Compile Include="Universum\EffectSystem\EffectManager.cs" />
     <Compile Include="Universum\EffectSystem\Effects\TimedEffect.cs" />
     <Compile Include="Universum\EffectSystem\Modifiers\AbstractModifier.cs" />
+    <Compile Include="Universum\EffectSystem\Modifiers\Additiv.cs" />
     <Compile Include="Universum\EffectSystem\Old\Effect.cs" />
     <Compile Include="Universum\EffectSystem\Old\EffectDeployKit.cs" />
     <Compile Include="Universum\EffectSystem\Old\EffectManager.cs" />

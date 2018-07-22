@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 using Zeus.Hermes;
 
 namespace DWDR_SL_Client.Organization
@@ -13,11 +13,9 @@ namespace DWDR_SL_Client.Organization
 
         private string mainType;
         private long id;
-        private static long nextID = long.MinValue +1;
 
         public long ID { get => id; set => id = value; }
         public string MappedType { get => mainType; set => mainType = value; }
-
         public string Type => MappedType;
 
         public MappedObject(string myType, long id = long.MinValue)
@@ -33,6 +31,24 @@ namespace DWDR_SL_Client.Organization
                 GIDM.getInstance().login(ID, this);
             }
             Hermes.getInstance().log(this, MappedType + " has been created.");
+        }
+
+        public virtual void save(StreamWriter writer)
+        {
+            writer.WriteLine(Convert.ToString(ID));
+            writer.WriteLine(MappedType);
+        }
+
+        public virtual void load(StreamReader reader)
+        {
+            GIDM.getInstance().unregister(ID);
+
+            ID = Convert.ToInt64(reader.ReadLine());
+
+            GIDM.getInstance().login(ID, this);
+            Hermes.getInstance().log(this, " wurde auf alte ID gesetzt.");
+
+            MappedType = Convert.ToString(reader.ReadLine());
         }
     }
 }

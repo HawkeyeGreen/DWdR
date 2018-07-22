@@ -7,9 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using DWDR_SL_Client.Organization;
 using DWDR_SL_Client.Universum;
-using DWDR_SL_Client.Universum.EffectSystem;
+using DWDR_SL_Client.Universum.EffectSystem.Effects;
+using DWDR_SL_Client.Universum.EffectSystem.Condition;
+using DWDR_SL_Client.Universum.EffectSystem.Modifiers;
 using Zeus.Hermes;
 
 namespace DWDR_SL_Client
@@ -18,8 +21,6 @@ namespace DWDR_SL_Client
     {
         // Klassen initialisieren //
         Universe universe;
-        //Global_ID_Management GIDM = Global_ID_Management.getInstance();
-        List<ISpaceObject> spaceObjects = new List<ISpaceObject>();
 
         public Form1()
         {
@@ -35,6 +36,28 @@ namespace DWDR_SL_Client
         {
             Universe.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
             universe = Universe.getInstance();
+
+            Dictionary<string, List<List<AbstractModifier>>> _Modifiers = new Dictionary<string, List<List<AbstractModifier>>>();
+
+            AbstractEffect testEffect = new TimedEffect(universe, 5, _Modifiers, new PlanetTypeCheck(new Planet(new Vector3D(), ""), "Barren"));
+            StreamWriter writer = new StreamWriter(File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + "/Test.txt"));
+            testEffect.save(writer);
+            writer.Close();
+
+            new Planet(new Vector3D(), "");
+            new Planet(new Vector3D(), "");
+            new Planet(new Vector3D(), "");
+            new Planet(new Vector3D(), "");
+            new Planet(new Vector3D(), "");
+            new Planet(new Vector3D(), "");
+            new Planet(new Vector3D(), "");
+
+            testEffect = new TimedEffect(universe, 10, _Modifiers, new PlanetTypeCheck(new Planet(new Vector3D(), ""), "Frozen"));
+
+            StreamReader reader = new StreamReader(File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + "/Test.txt"));
+            reader.ReadLine();
+            testEffect.load(reader);
+            reader.Close();
         }
 
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
