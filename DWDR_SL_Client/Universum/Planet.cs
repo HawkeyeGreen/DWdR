@@ -12,7 +12,7 @@ using DWDR_SL_Client.Universum.Ressources;
 
 namespace DWDR_SL_Client.Universum
 {
-    class Planet : MappedObject, ISpaceObject
+    class Planet : GenericSpaceObject
     {
         private string myPath;
 
@@ -55,7 +55,7 @@ namespace DWDR_SL_Client.Universum
         public string Systematic_name { get => systematic_name; set => systematic_name = value; }
         public float Radius { get => radius; set => radius = value; }
 
-        public Planet() : base("Planet")
+        public Planet(Vector3D position, string path) : base("Planet", position, path)
         {
             
         }
@@ -143,6 +143,21 @@ namespace DWDR_SL_Client.Universum
             {
                 return -1;
             }
+        }
+
+        public override List<IEffectable> getAllEffectables()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<IEffectable> getEffectablesByKey(string affectionKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<IEffectable> getEffectablesByKeyTable(Tuple<List<string>, List<string>> table)
+        {
+            throw new NotImplementedException();
         }
     }
 }

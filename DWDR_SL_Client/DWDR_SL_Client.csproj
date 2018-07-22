@@ -79,6 +79,7 @@
     <Compile Include="Universum\EffectSystem\Old\EffectManager.cs" />
     <Compile Include="Universum\EffectSystem\Old\ModifierEnvelope.cs" />
     <Compile Include="Universum\ManagementSystems\BaseTypeManagement.cs" />
+    <Compile Include="Universum\Plane.cs" />
     <Compile Include="Universum\Planet.cs" />
     <Compile Include="Universum\Planets\Climate.cs" />
     <Compile Include="Universum\Planets\Region.cs" />

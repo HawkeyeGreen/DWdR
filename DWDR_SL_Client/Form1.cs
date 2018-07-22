@@ -28,27 +28,23 @@ namespace DWDR_SL_Client
 
         private void neuladenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            universe = Universe.getInstance(AppDomain.CurrentDomain.BaseDirectory);
+            universe = Universe.getInstance();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            universe = Universe.getInstance(AppDomain.CurrentDomain.BaseDirectory);
-            spaceObjects = universe.getAnySpaceObjectInRadiusAround(new Vector3D(), 1.0f);
-            Planet planet = new Planet();
-            //actualizetollStripInfoGIDM();
+            Universe.WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            universe = Universe.getInstance();
         }
 
         private void beendenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //GIDM.saveIDDatabank();
             Hermes.getInstance().shutdownHermes();
             this.Close();
         }
 
         private void aktualisiereToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //actualizetollStripInfoGIDM();
         }
 
     }

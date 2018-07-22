@@ -15,13 +15,14 @@ namespace DWDR_SL_Client.Universum
     /// </summary>
 
 
-    class Universe
+    class Universe : MappedObject, IEffectable
     {
         // SINGLETON IMPLEMENTATION //
         private static Universe instance;
 
         // Globale System Variablen //
-        string workingDirectory;
+        private static string workingDirectory;
+        public static string WorkingDirectory { set => workingDirectory = value; }
 
         // Galaxie Eigenschaften //
         int gal_Count                   = 0;
@@ -37,43 +38,52 @@ namespace DWDR_SL_Client.Universum
         List<string> sunPaths           = new List<string>();
         List<string> planetPaths        = new List<string>();
 
+        public EffectManager EffectManager => throw new NotImplementedException();
+
+        public List<string> Resistances => throw new NotImplementedException();
+
+        public List<string> Affectable => throw new NotImplementedException();
+
+        public IEffectable Parent => null;
+
 
         // Universe-wide effectSystem
-        // EffectManager effectManagement;
+        EffectManager effectManager;
 
-        private Universe(string workingPath)
+        private Universe() : base("The Universe")
         {
-            workingDirectory = workingPath;
+            effectManager = new EffectManager(this);
+
             #region Check if all necessary files and folders exists
             #region foldercheck
-            if (Directory.Exists(workingPath + "/uni") == false) { Directory.CreateDirectory(workingPath + "/uni"); }
-            if (Directory.Exists(workingPath + "/uni/rO") == false) { Directory.CreateDirectory(workingPath + "/uni/rO"); }
-            if (Directory.Exists(workingPath + "/uni/rO/p") == false) { Directory.CreateDirectory(workingPath + "/uni/rO/p"); }
-            if (Directory.Exists(workingPath + "/uni/rO/s") == false) { Directory.CreateDirectory(workingPath + "/uni/rO/s"); }
-            if (Directory.Exists(workingPath + "/uni/ss") == false) { Directory.CreateDirectory(workingPath + "/uni/ss"); }
+            if (Directory.Exists(workingDirectory + "/uni") == false) { Directory.CreateDirectory(workingDirectory + "/uni"); }
+            if (Directory.Exists(workingDirectory + "/uni/rO") == false) { Directory.CreateDirectory(workingDirectory + "/uni/rO"); }
+            if (Directory.Exists(workingDirectory + "/uni/rO/p") == false) { Directory.CreateDirectory(workingDirectory + "/uni/rO/p"); }
+            if (Directory.Exists(workingDirectory + "/uni/rO/s") == false) { Directory.CreateDirectory(workingDirectory + "/uni/rO/s"); }
+            if (Directory.Exists(workingDirectory + "/uni/ss") == false) { Directory.CreateDirectory(workingDirectory + "/uni/ss"); }
             #endregion
             #region filecheck
-            if (File.Exists(workingPath + "/uni/galaxies.ov") == false) 
+            if (File.Exists(workingDirectory + "/uni/galaxies.ov") == false) 
             {
-                StreamWriter sw = File.CreateText(workingPath + "/uni/galaxies.ov");
+                StreamWriter sw = File.CreateText(workingDirectory + "/uni/galaxies.ov");
                 sw.WriteLine("0");
                 sw.Close();
             }
-            if (File.Exists(workingPath + "/uni/sunsystem_paths.ov") == false)
+            if (File.Exists(workingDirectory + "/uni/sunsystem_paths.ov") == false)
             {
-                StreamWriter sw = File.CreateText(workingPath + "/uni/sunsystem_paths.ov");
+                StreamWriter sw = File.CreateText(workingDirectory + "/uni/sunsystem_paths.ov");
                 sw.WriteLine("0");
                 sw.Close();
             }
-            if (File.Exists(workingPath + "/uni/sun_paths.ov") == false)
+            if (File.Exists(workingDirectory + "/uni/sun_paths.ov") == false)
             {
-                StreamWriter sw = File.CreateText(workingPath + "/uni/sun_paths.ov");
+                StreamWriter sw = File.CreateText(workingDirectory + "/uni/sun_paths.ov");
                 sw.WriteLine("0");
                 sw.Close();
             }
-            if (File.Exists(workingPath + "/uni/planet_paths.ov") == false)
+            if (File.Exists(workingDirectory + "/uni/planet_paths.ov") == false)
             {
-                StreamWriter sw = File.CreateText(workingPath + "/uni/planet_paths.ov");
+                StreamWriter sw = File.CreateText(workingDirectory + "/uni/planet_paths.ov");
                 sw.WriteLine("0");
                 sw.Close();
             }
@@ -82,7 +92,7 @@ namespace DWDR_SL_Client.Universum
 
             #region load all paths and stuff
             #region Galaxien laden
-            StreamReader reader = new StreamReader(File.OpenRead(workingPath + "/uni/galaxies.ov"));
+            StreamReader reader = new StreamReader(File.OpenRead(workingDirectory + "/uni/galaxies.ov"));
             gal_Count = Convert.ToInt16(reader.ReadLine());
             for(int i = 0; i < gal_Count; i++)
             {
@@ -97,7 +107,7 @@ namespace DWDR_SL_Client.Universum
             #endregion
 
             #region Sonnensysteme laden
-            reader = new StreamReader(File.OpenRead(workingPath + "/uni/sunsystem_paths.ov"));
+            reader = new StreamReader(File.OpenRead(workingDirectory + "/uni/sunsystem_paths.ov"));
             int count = Convert.ToInt16(reader.ReadLine());
             for (int i = 0; i < count; i++)
             {
@@ -112,7 +122,7 @@ namespace DWDR_SL_Client.Universum
             #endregion
 
             #region Freie Sonnen laden
-            reader = new StreamReader(File.OpenRead(workingPath + "/uni/sun_paths.ov"));
+            reader = new StreamReader(File.OpenRead(workingDirectory + "/uni/sun_paths.ov"));
             count = Convert.ToInt16(reader.ReadLine());
             for (int i = 0; i < count; i++)
             {
@@ -122,7 +132,7 @@ namespace DWDR_SL_Client.Universum
             #endregion
 
             #region Freie Planeten laden
-            reader = new StreamReader(File.OpenRead(workingPath + "/uni/planet_paths.ov"));
+            reader = new StreamReader(File.OpenRead(workingDirectory + "/uni/planet_paths.ov"));
             count = Convert.ToInt16(reader.ReadLine());
             for (int i = 0; i < count; i++)
             {
@@ -137,16 +147,17 @@ namespace DWDR_SL_Client.Universum
             #endregion
         }
 
-        public static Universe getInstance(string workingPath)
+
+        public static Universe getInstance()
         {
             if(instance == null)
             {
-                Universe.instance = new Universe(workingPath);
+                Universe.instance = new Universe();
             }
             return instance;
         }
 
-        public void reinitialize(string workingPath)
+        public void reinitialize(string workingDirectory)
         {
 
         }
@@ -229,6 +240,21 @@ namespace DWDR_SL_Client.Universum
                 }
             }
             return possibleSuntypes;
+        }
+
+        public List<IEffectable> getAllEffectables()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<IEffectable> getEffectablesByKey(string affectionKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<IEffectable> getEffectablesByKeyTable(Tuple<List<string>, List<string>> table)
+        {
+            throw new NotImplementedException();
         }
     }
 
