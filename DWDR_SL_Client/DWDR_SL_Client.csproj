@@ -69,6 +69,7 @@
     <Compile Include="Universum\Ecosystem\Lifeform.cs" />
     <Compile Include="Universum\EffectSystem\Condition\AbstractCondition.cs" />
     <Compile Include="Universum\EffectSystem\Condition\PlanetTypeCheck.cs" />
+    <Compile Include="Universum\EffectSystem\Deploy\AbstractDeploy.cs" />
     <Compile Include="Universum\EffectSystem\Effects\AbstractEffect.cs" />
     <Compile Include="Universum\EffectSystem\Effectable.cs" />
     <Compile Include="Universum\EffectSystem\EffectManager.cs" />
