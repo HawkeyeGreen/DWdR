@@ -8,6 +8,7 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Deploy
 {
     class AbstractDeploy
     {
+        private IEffectable master;
         private Effects.AbstractEffect effect;
         private Condition.AbstractCondition condition;
     }

@@ -28,6 +28,12 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Effects
             affectedKeys = _Modifiers.Keys.ToList<string>();
         }
 
+        public AbstractEffect(string effectType) : base(effectType)
+        {
+            modifiers = new Dictionary<string, List<List<Modifiers.AbstractModifier>>>();
+            affectedKeys = new List<string>();
+        }
+
         abstract public bool update();
 
         abstract public bool isAValidTarget(IEffectable target);

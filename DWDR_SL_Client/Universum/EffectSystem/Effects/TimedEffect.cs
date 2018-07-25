@@ -27,6 +27,11 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Effects
             lastRound = Organization.Round.currentRound;
         }
 
+        public TimedEffect() : base("TimedEffec")
+        {
+           
+        }
+
         public override bool isAValidTarget(IEffectable target)
         {
             return targetCondition.isMet();
