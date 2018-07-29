@@ -68,6 +68,11 @@
     <Compile Include="Universum\Ecosystem\Ecosystem.cs" />
     <Compile Include="Universum\Ecosystem\Lifeform.cs" />
     <Compile Include="Universum\EffectSystem\Condition\AbstractCondition.cs" />
+    <Compile Include="Universum\EffectSystem\Condition\AbstractDualSubCondition.cs" />
+    <Compile Include="Universum\EffectSystem\Condition\AbstractedListSubCondition.cs" />
+    <Compile Include="Universum\EffectSystem\Condition\ANDCondition.cs" />
+    <Compile Include="Universum\EffectSystem\Condition\ConjugationCondition.cs" />
+    <Compile Include="Universum\EffectSystem\Condition\ORCondition.cs" />
     <Compile Include="Universum\EffectSystem\Condition\PlanetTypeCheck.cs" />
     <Compile Include="Universum\EffectSystem\Deploy\AbstractDeploy.cs" />
     <Compile Include="Universum\EffectSystem\Effects\AbstractEffect.cs" />
