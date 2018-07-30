@@ -8,11 +8,11 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
 {
     class ANDCondition : AbstractDualSubCondition
     {
-        public ANDCondition(AbstractCondition cond0, AbstractCondition cond1) : base(cond0, cond1, "ANDCondition")
+        public ANDCondition(AbstractCondition cond0, AbstractCondition cond1, bool inversion = false) : base(cond0, cond1, "ANDCondition", inversion)
         {
         }
 
-        public ANDCondition() : base("ANDCondition")
+        public ANDCondition(bool inversion = false) : base("ANDCondition", inversion)
         {
         }
 
@@ -22,10 +22,10 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
             {
                 if(Condition1.isMet())
                 {
-                    return true;
+                    return Inversion ^ true;
                 }
             }
-            return false;
+            return Inversion ^ false;
         }
 
 

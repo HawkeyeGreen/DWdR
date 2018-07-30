@@ -8,12 +8,12 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
 {
     class ConjugationCondition : AbstractedListSubCondition
     {
-        public ConjugationCondition(List<AbstractCondition> conditions) : base(conditions, "ConjugationCondition")
+        public ConjugationCondition(List<AbstractCondition> conditions, bool inversion = false) : base(conditions, "ConjugationCondition", inversion)
         {
 
         }
 
-        public ConjugationCondition() : base("ConjugationCondition")
+        public ConjugationCondition(bool inversion = false) : base("ConjugationCondition", inversion)
         {
 
         }
@@ -24,11 +24,11 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
             {
                 if(!cond.isMet())
                 {
-                    return false;
+                    return Inversion ^ false;
                 }
             }
 
-            return true;
+            return Inversion ^ true;
         }
     }
 }

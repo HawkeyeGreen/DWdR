@@ -11,7 +11,7 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
         private Planet target;
         private string expectedType;
 
-        public PlanetTypeCheck(Planet planet, string type) : base("PlanetTypeCheck")
+        public PlanetTypeCheck(Planet planet, string type, bool inversion = false) : base("PlanetTypeCheck", inversion)
         {
             target = planet;
             expectedType = type;
@@ -19,8 +19,8 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
 
         public override bool isMet()
         {
-            if (target.PlanetType == expectedType) { return true; }
-            return false;
+            if (target.PlanetType == expectedType) { return Inversion ^ true; }
+            return Inversion ^ false;
         }
     }
 }

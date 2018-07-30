@@ -14,13 +14,13 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
         public AbstractCondition Condition0 { get => condition_0; set => condition_0 = value; }
         public AbstractCondition Condition1 { get => condition_1; set => condition_1 = value; }
 
-        public AbstractDualSubCondition(AbstractCondition cond0, AbstractCondition cond1, string type) : base(type)
+        public AbstractDualSubCondition(AbstractCondition cond0, AbstractCondition cond1, string type, bool inversion) : base(type, inversion)
         {
             condition_0 = cond0;
             condition_1 = cond1;
         }
 
-        public AbstractDualSubCondition(string type) : base(type)
+        public AbstractDualSubCondition(string type, bool inversion) : base(type, inversion)
         {
 
         }
