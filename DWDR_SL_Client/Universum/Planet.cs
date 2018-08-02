@@ -14,15 +14,13 @@ namespace DWDR_SL_Client.Universum
 {
     class Planet : GenericSpaceObject
     {
-        private string myPath;
-
         // public EffectManager effectManagement;
         public string systematic_name;
         public string named;
         public string claimed_by;
         private string plane = "main";
+        private string descriptionPath;
 
-        private Vector3D position = new Vector3D();
         public Vector3D direction = new Vector3D();
         public Vector3D magic_vec = new Vector3D();
         public Vector3D carmal_vec = new Vector3D();
@@ -30,11 +28,6 @@ namespace DWDR_SL_Client.Universum
         private string type = "planet";
         private string planetType;
         public int size;
-        public int surface;
-        public int humidity_level;
-        public int temperature;
-        public int carmal;
-        public int magic;
         private float radius = 1.0f;
 
         public bool ecosystem;
@@ -45,11 +38,10 @@ namespace DWDR_SL_Client.Universum
 
         private List<Deposit> groundDeposits;
 
-        public Vector3D Position { get => position; set => position = value; }
         public string Plane { get => plane; set => plane = value; }
         public string Type { get => type; set => type = value; }
         public string PlanetType { get => planetType; set => planetType = value; }
-        public string Path { get => myPath; set => myPath = value; }
+        
         public long ID { get => base.ID; set => base.ID = value; }
 
         public string Systematic_name { get => systematic_name; set => systematic_name = value; }
@@ -63,21 +55,21 @@ namespace DWDR_SL_Client.Universum
         public Planet createMe(string pathForDirectory, float radius, Vector3D position, string systematicName, long ID, Sunsystem sunsystem, List<PlanetGenerationProfile> allowedProfiles)
         {
             this.radius = radius;
-            this.position = position;
+            Position = position;
 
             return this;
         }
 
         public void update(int simulation_Tier)
         {
-            position.addVector(direction);
+            Position.addVector(direction);
         }
 
-        public Planet loadMe(string Path)
+        public Planet loadMe(string path)
         {
-            myPath = Path;
+            Path = path;
 
-            StreamReader reader = new StreamReader(File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + myPath));
+            StreamReader reader = new StreamReader(File.OpenRead(AppDomain.CurrentDomain.BaseDirectory + Path));
 
             Systematic_name = Convert.ToString(reader.ReadLine());
             ID = Convert.ToInt64(reader.ReadLine());
@@ -85,9 +77,8 @@ namespace DWDR_SL_Client.Universum
             Type = Convert.ToString(reader.ReadLine());
             claimed = Convert.ToBoolean(reader.ReadLine());
 
-            humidity_level = Convert.ToInt32(reader.ReadLine());
 
-            position.FromString(Convert.ToString(reader.ReadLine()));
+            Position.FromString(Convert.ToString(reader.ReadLine()));
             direction.FromString(Convert.ToString(reader.ReadLine()));
             magic_vec.FromString(Convert.ToString(reader.ReadLine()));
             carmal_vec.FromString(Convert.ToString(reader.ReadLine()));
@@ -98,51 +89,19 @@ namespace DWDR_SL_Client.Universum
 
         public void saveMe()
         {
-            StreamWriter writer = new StreamWriter(File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + myPath));
+            StreamWriter writer = new StreamWriter(File.OpenWrite(AppDomain.CurrentDomain.BaseDirectory + Path));
 
             writer.WriteLine(Systematic_name);
             writer.WriteLine(named);
             writer.WriteLine(Type);
             writer.WriteLine(claimed);
 
-            writer.WriteLine(position.getStringVersion());
+            writer.WriteLine(Position.getStringVersion());
             writer.WriteLine(direction.getStringVersion());
             writer.WriteLine(magic_vec.getStringVersion());
             writer.WriteLine(carmal_vec.getStringVersion());
 
             writer.Close();
-        }
-
-        public int getIntegerValue(string attribute)
-        {
-            if(attribute == "size")
-            {
-                return size;
-            }
-            else if (attribute == "surface")
-            {
-                return surface;
-            }
-            else if (attribute == "humidity_level")
-            {
-                return humidity_level;
-            }
-            else if (attribute == "temperature")
-            {
-                return temperature;
-            }
-            else if (attribute == "carmal")
-            {
-                return carmal;
-            }
-            else if (attribute == "magic")
-            {
-                return magic;
-            }
-            else
-            {
-                return -1;
-            }
         }
 
         public override List<IEffectable> getAllEffectables()
