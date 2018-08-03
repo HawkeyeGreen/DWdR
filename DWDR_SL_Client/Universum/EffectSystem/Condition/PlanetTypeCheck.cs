@@ -27,7 +27,7 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
         {
             if(type == "planet")
             {
-                
+                target = Planet.getPlanetByID(ID);
             }
         }
     }
