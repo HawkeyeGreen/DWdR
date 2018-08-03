@@ -34,9 +34,9 @@ namespace DWDR_SL_Client.Universum
         List<ISpaceObject> roamingSuns = new List<ISpaceObject>();
         List<ISpaceObject> roamingPlanets = new List<ISpaceObject>();
 
-        List<string> sunsystemPaths     = new List<string>();
-        List<string> sunPaths           = new List<string>();
-        List<string> planetPaths        = new List<string>();
+        Dictionary<long, string> sunsystemPaths     = new Dictionary<long, string>();
+        Dictionary<long, string> sunPaths           = new Dictionary<long, string>();
+        Dictionary<long, string> planetPaths        = new Dictionary<long, string>();
 
         public EffectManager EffectManager => throw new NotImplementedException();
 
@@ -49,7 +49,9 @@ namespace DWDR_SL_Client.Universum
 
         // Universe-wide effectSystem
         EffectManager effectManager;
-
+        // Neuer Code wäre besser
+        // Zum Beispiel könnte man das aus dem /uni verzeichnis ein /u verzeichnis machen und suksesszive absteigen
+        // Ebenen erhalten eigene Ordner in denen sich spezifische Objekte befinden
         private Universe() : base("The Universe")
         {
             effectManager = new EffectManager(this);
@@ -115,35 +117,35 @@ namespace DWDR_SL_Client.Universum
                 Sunsystem tmp = new Sunsystem();
                 tmp.loadMe(path);
 
-                sunsystemPaths.Add(path);
+                sunsystemPaths.Add(tmp.ID, path);
                 sunsystems.Add(tmp);
             }
             reader.Close();
             #endregion
 
-            #region Freie Sonnen laden
-            reader = new StreamReader(File.OpenRead(workingDirectory + "/uni/sun_paths.ov"));
-            count = Convert.ToInt16(reader.ReadLine());
-            for (int i = 0; i < count; i++)
-            {
-                sunPaths.Add(Convert.ToString(reader.ReadLine()));
-            }
-            reader.Close();
-            #endregion
+            //#region Freie Sonnen laden
+            //reader = new StreamReader(File.OpenRead(workingDirectory + "/uni/sun_paths.ov"));
+            //count = Convert.ToInt16(reader.ReadLine());
+            //for (int i = 0; i < count; i++)
+            //{
+            //    sunPaths.Add(Convert.ToString(reader.ReadLine()));
+            //}
+            //reader.Close();
+            //#endregion
 
-            #region Freie Planeten laden
-            reader = new StreamReader(File.OpenRead(workingDirectory + "/uni/planet_paths.ov"));
-            count = Convert.ToInt16(reader.ReadLine());
-            for (int i = 0; i < count; i++)
-            {
-                planetPaths.Add(Convert.ToString(reader.ReadLine()));
-                Planet planet = new Planet(new Vector3D(), planetPaths[i]).loadMe(planetPaths[i]);
-                //Spaceobject tmp = new Spaceobject(planet.position, "planet", planet.id, planet.systematic_name, new List<string>(), planetPaths[i]);
-                roamingPlanets.Add(planet);
+            //#region Freie Planeten laden
+            //reader = new StreamReader(File.OpenRead(workingDirectory + "/uni/planet_paths.ov"));
+            //count = Convert.ToInt16(reader.ReadLine());
+            //for (int i = 0; i < count; i++)
+            //{
+            //    planetPaths.Add(Convert.ToString(reader.ReadLine()));
+            //    Planet planet = new Planet(new Vector3D(), planetPaths[i]).loadMe(planetPaths[i]);
+            //    //Spaceobject tmp = new Spaceobject(planet.position, "planet", planet.id, planet.systematic_name, new List<string>(), planetPaths[i]);
+            //    roamingPlanets.Add(planet);
                 
-            }
-            reader.Close();
-            #endregion
+            //}
+            //reader.Close();
+            //#endregion
             #endregion
         }
 
@@ -183,7 +185,7 @@ namespace DWDR_SL_Client.Universum
 
         public void end_round()
         {
-            foreach(string plt in planetPaths)
+            foreach(string plt in planetPaths.Values)
             {
                 Planet planet = new Planet(new Vector3D(), workingDirectory + plt);
                 planet.loadMe(workingDirectory + plt);
@@ -255,6 +257,16 @@ namespace DWDR_SL_Client.Universum
         public List<IEffectable> getEffectablesByKeyTable(Tuple<List<string>, List<string>> table)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Looks up the planets path in the central path library.
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public string getPlanetPathByID(long ID)
+        {
+            return planetPaths[ID];
         }
     }
 

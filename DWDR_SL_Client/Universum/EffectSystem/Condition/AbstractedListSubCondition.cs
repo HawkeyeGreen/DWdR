@@ -20,5 +20,13 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
         {
             conditions = new List<AbstractCondition>();
         }
+
+        public override void setTarget(long ID, string type)
+        {
+            foreach(AbstractCondition condition in conditions)
+            {
+                condition.setTarget(ID, type);
+            }
+        }
     }
 }

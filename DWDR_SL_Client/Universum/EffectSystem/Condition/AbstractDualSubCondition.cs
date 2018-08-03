@@ -28,5 +28,11 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
         public void replaceCondition0(AbstractCondition cond0) => condition_0 = cond0;
 
         public void replaceCondition1(AbstractCondition cond1) => condition_1 = cond1;
+
+        public override void setTarget(long ID, string type)
+        {
+            condition_0.setTarget(ID, type);
+            condition_1.setTarget(ID, type);
+        }
     }
 }

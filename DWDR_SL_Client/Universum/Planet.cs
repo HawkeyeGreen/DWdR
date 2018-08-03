@@ -118,5 +118,12 @@ namespace DWDR_SL_Client.Universum
         {
             throw new NotImplementedException();
         }
+
+
+        public static Planet getPlanetByID(long ID)
+        {
+            string path = Universe.getInstance().getPlanetPathByID(ID);
+            return new Planet(new Vector3D(), path).loadMe(path);
+        }
     }
 }

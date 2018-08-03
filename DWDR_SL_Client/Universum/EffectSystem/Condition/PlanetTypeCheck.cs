@@ -22,5 +22,13 @@ namespace DWDR_SL_Client.Universum.EffectSystem.Condition
             if (target.PlanetType == expectedType) { return Inversion ^ true; }
             return Inversion ^ false;
         }
+
+        public override void setTarget(long ID, string type)
+        {
+            if(type == "planet")
+            {
+                
+            }
+        }
     }
 }
