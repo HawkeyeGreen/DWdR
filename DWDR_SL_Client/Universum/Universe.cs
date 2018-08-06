@@ -34,7 +34,7 @@ namespace DWDR_SL_Client.Universum
         List<ISpaceObject> roamingSuns = new List<ISpaceObject>();
         List<ISpaceObject> roamingPlanets = new List<ISpaceObject>();
 
-        Dictionary<long, string> sunsystemPaths     = new Dictionary<long, string>();
+        Dictionary<long, Tuple<string, Object>> sunsystemPaths     = new Dictionary<long, Tuple<string, Object>>();
         Dictionary<long, string> sunPaths           = new Dictionary<long, string>();
         Dictionary<long, string> planetPaths        = new Dictionary<long, string>();
 
@@ -117,7 +117,7 @@ namespace DWDR_SL_Client.Universum
                 Sunsystem tmp = new Sunsystem();
                 tmp.loadMe(path);
 
-                sunsystemPaths.Add(tmp.ID, path);
+                sunsystemPaths.Add(tmp.ID, new Tuple<string, Object>(path, new Object()));
                 sunsystems.Add(tmp);
             }
             reader.Close();
@@ -268,6 +268,14 @@ namespace DWDR_SL_Client.Universum
         {
             return planetPaths[ID];
         }
+
+        public Sunsystem getSunsystem(long ID)
+        {
+            lock(sunsystemPaths[ID].Item2)
+            {
+                return new Sunsystem(sunsystemPaths[ID].Item1);
+            }
+        }
     }
 
     class Galaxy : MappedObject
@@ -279,6 +287,17 @@ namespace DWDR_SL_Client.Universum
         public Galaxy() : base("Galaxy")
         {
 
+        }
+
+        /// <summary>
+        /// Ueberprueft, ob eine gegebene Position zu dieser Galaxie
+        /// oder ihrer veil-free Umgebung gehört.
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public bool isPositionInMe(Vector3D position)
+        {
+            return true;
         }
     }
 }

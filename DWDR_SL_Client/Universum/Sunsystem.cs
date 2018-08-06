@@ -14,7 +14,7 @@ namespace DWDR_SL_Client.Universum
      * Sonnensysteme sind eine höhere Zoomstufe im Universum.
      * In ihnen wird alles von der/ den Sonnen aus benannt.
      ***************************************************/
-    class Sunsystem : MappedObject, ISpaceObject
+    class Sunsystem : GenericSpaceObject
     {
         #region Fields
         private string myDirectory;
@@ -123,9 +123,13 @@ namespace DWDR_SL_Client.Universum
         }
         #endregion
 
-        public Sunsystem() : base("Sunystem")
+        public Sunsystem(string path) : base("Sunystem", new Vector3D(), path)
         {
+            loadMe(path);
+        }
 
+        public Sunsystem() : base("Sunystem", new Vector3D(), "TBD")
+        {
         }
 
         // Die createMe-Funktion erstellt aus den Parametern, die vom Universums-Konstruktor kommen,
@@ -205,6 +209,21 @@ namespace DWDR_SL_Client.Universum
 
             // asteroidbelt erzeugen
 
+        }
+
+        public override List<IEffectable> getAllEffectables()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<IEffectable> getEffectablesByKey(string affectionKey)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<IEffectable> getEffectablesByKeyTable(Tuple<List<string>, List<string>> table)
+        {
+            throw new NotImplementedException();
         }
     }
 }
